@@ -1,0 +1,15 @@
+current directory: /Users/soraaoki/cafe_app/vendor/bundle/ruby/2.5.0/gems/bootsnap-1.4.9/ext/bootsnap
+/Users/soraaoki/.rbenv/versions/2.5.7/bin/ruby -r ./siteconf20201028-94726-oipuhi.rb extconf.rb
+creating Makefile
+
+current directory: /Users/soraaoki/cafe_app/vendor/bundle/ruby/2.5.0/gems/bootsnap-1.4.9/ext/bootsnap
+make "DESTDIR=" clean
+
+current directory: /Users/soraaoki/cafe_app/vendor/bundle/ruby/2.5.0/gems/bootsnap-1.4.9/ext/bootsnap
+make "DESTDIR="
+compiling bootsnap.c
+linking shared-object bootsnap/bootsnap.bundle
+
+current directory: /Users/soraaoki/cafe_app/vendor/bundle/ruby/2.5.0/gems/bootsnap-1.4.9/ext/bootsnap
+make "DESTDIR=" install
+/usr/bin/install -c -m 0755 bootsnap.bundle ./.gem.20201028-94726-u3mvmg/bootsnap
