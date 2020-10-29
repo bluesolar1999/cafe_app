@@ -24,7 +24,7 @@ RSpec.describe "Users", type: :system do
       fill_in "パスワード", with: "password"
       fill_in "パスワード(確認)", with: "password"
       click_button "登録する"
-      expect(page).to have_content "クックログへようこそ！"
+      expect(page).to have_content "カフェアプリへようこそ！"
     end
 
     it "無効なユーザーでユーザー登録を行うとユーザー登録失敗のフラッシュが表示されること" do
@@ -37,26 +37,26 @@ RSpec.describe "Users", type: :system do
       expect(page).to have_content "パスワード(確認)とパスワードの入力が一致しません"
     end
   end
-end
 
-describe "プロフィールページ" do
-  context "ページレイアウト" do
-    before do
-      visit user_path(user)
-    end
+  describe "プロフィールページ" do
+    context "ページレイアウト" do
+      before do
+        visit user_path(user)
+      end
 
-    it "「プロフィール」の文字列が存在することを確認" do
-      expect(page).to have_content 'プロフィール'
-    end
+      it "「プロフィール」の文字列が存在することを確認" do
+        expect(page).to have_content 'プロフィール'
+      end
 
-    it "正しいタイトルが表示されることを確認" do
-      expect(page).to have_title full_title('プロフィール')
-    end
+      it "正しいタイトルが表示されることを確認" do
+        expect(page).to have_title full_title('プロフィール')
+      end
 
-    it "ユーザー情報が表示されることを確認" do
-      expect(page).to have_content user.name
-      expect(page).to have_content user.introduction
-      expect(page).to have_content user.sex
+      it "ユーザー情報が表示されることを確認" do
+        expect(page).to have_content user.name
+        expect(page).to have_content user.introduction
+        expect(page).to have_content user.sex
+      end
     end
   end
 end
