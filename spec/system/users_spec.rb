@@ -60,4 +60,3 @@ describe "プロフィールページ" do
     end
   end
 end
-end
