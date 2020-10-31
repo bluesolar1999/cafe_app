@@ -9,7 +9,6 @@ RSpec.describe "プロフィール編集", type: :request do
       get edit_user_path(user)
       login_for_request(user)
       expect(response).to redirect_to edit_user_url(user)
-      expect(response).to render_template('users/edit')
       patch user_path(user), params: { user: { name: "Example User",
                                                email: "user@example.com",
                                                introduction: "初めまして",
