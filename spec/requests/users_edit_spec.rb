@@ -5,9 +5,10 @@ RSpec.describe "プロフィール編集", type: :request do
   let!(:other_user) { create(:user) }
 
   context "認可されたユーザーの場合" do
-    it "レスポンスが正常に表示されること" do
-      login_for_request(user)
+    it "レスポンスが正常に表示されること(+フレンドリーフォワーディング)" do  # テスト名変更
       get edit_user_path(user)
+      login_for_request(user)
+      expect(response).to redirect_to edit_user_url(user)
       expect(response).to render_template('users/edit')
       patch user_path(user), params: { user: { name: "Example User",
                                                email: "user@example.com",
