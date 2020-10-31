@@ -9,13 +9,7 @@ class User < ApplicationRecord
   has_secure_password
   validates :password, presence: true, length: { minimum: 6 }
 
-  private
-
-   def downcase_email
-      self.email = email.downcase
-   end
-
-   class << self
+  class << self
     # 渡された文字列のハッシュ値を返す
     def digest(string)
       cost = ActiveModel::SecurePassword.min_cost ? BCrypt::Engine::MIN_COST :
@@ -28,6 +22,7 @@ class User < ApplicationRecord
       SecureRandom.urlsafe_base64
     end
   end
+
 
   # 永続セッションのためにユーザーをデータベースに記憶する
   def remember
@@ -45,4 +40,10 @@ class User < ApplicationRecord
   def forget
     update_attribute(:remember_digest, nil)
   end
+
+  private
+
+   def downcase_email
+      self.email = email.downcase
+   end
 end
