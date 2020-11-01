@@ -47,10 +47,4 @@ RSpec.describe Cafe, type: :model do
       expect(cafe.errors[:popularity]).to include("は5以下の値にしてください")
     end
   end
-
-  context "並び順" do
-    it "最も最近の投稿が最初の投稿になっていること" do
-      expect(cafe).to eq cafe.first
-    end
-  end
 end

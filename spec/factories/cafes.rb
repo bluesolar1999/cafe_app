@@ -1,12 +1,11 @@
 FactoryBot.define do
   factory :cafe do
-    name { Faker::Food.cafe }
-    order { Coffee }
-    description { "冬に飲みたくなる、身体が温まる飲み物です" }
+    name { Faker::Food.dish }
+    order { "coffee" }
+    description { "冬に食べたくなる、身体が温まる料理です" }
     reference { "https://cookpad.com/recipe/2798655" }
     popularity { 5 }
     association :user
-    wifi { "あり" }
     created_at { Time.current }
   end
 

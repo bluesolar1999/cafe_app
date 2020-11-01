@@ -47,12 +47,12 @@ RSpec.describe "ユーザーの削除", type: :request do
     end
   end
 
-  context "料理が紐づくユーザーを削除した場合" do
-    it "ユーザーと同時に紐づく料理も削除される" do
+  context "投稿が紐づくユーザーを削除した場合" do
+    it "ユーザーと同時に紐づく投稿も削除される" do
       login_for_request(user)
       expect {
         delete user_path(user)
-      }.to change(cafe, :count).by(-1)
+      }.to change(Cafe, :count).by(-1)
     end
   end
 end

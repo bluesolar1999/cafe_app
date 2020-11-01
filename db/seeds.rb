@@ -13,3 +13,4 @@ User.create!(name:  name,
     password:              password,
     password_confirmation: password)
 end
+
