@@ -1,5 +1,12 @@
-<center>
-  <h1>カフェアプリへようこそ！</h1>
-  <h2>あなたのお気に入りのカフェを共有しませんか？</h2>
-  <p>今日行くカフェ、もう迷わない！</p>
-</center>
+<% if logged_in? %>
+  <div class="container">
+    <h3>みんなのカフェ (<%= @feed_items.count %>)</h3>
+    <%= render 'shared/feed' %>
+  </div>
+<% else %>
+  <center>
+    <h1>カフェアプリへようこそ！</h1>
+    <h2>あなたのお気に入りのカフェ、見つけませんか？</h2>
+    <p>今日の行くカフェ、もう迷わない！</p>
+  </center>
+<% end %>

@@ -17,7 +17,7 @@ ActiveRecord::Schema.define(version: 2020_11_01_231927) do
 
   create_table "cafes", force: :cascade do |t|
     t.string "name"
-    t.string "order"
+    t.text "order"
     t.text "description"
     t.text "reference"
     t.integer "popularity"

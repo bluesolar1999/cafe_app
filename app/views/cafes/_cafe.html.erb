@@ -1,0 +1,10 @@
+<li id="cafe-<%= cafe.id %>">
+  <%= link_to gravatar_for(cafe.user, size: 50), cafe.user %>
+  <span class="name"><%= link_to cafe.name, "#" %></span>
+  <span class="order"><%= cafe.order %></span><br>
+  <span class="description"><%= cafe.description %></span><br>
+  <span class="popularity">人気度：<%= cafe.popularity %></span><br>
+  <span class="reference"><%= link_to "作り方", cafe.reference, target: :_blank %></span>
+    <%= time_ago_in_words(cafe.created_at) %>前に投稿
+  </span>
+</li>
