@@ -119,11 +119,11 @@ RSpec.describe "Users", type: :system do
         expect(page).to have_content user.sex
       end
 
-      it "料理の件数が表示されていることを確認" do
-        expect(page).to have_content "料理 (#{user.cafes.count})"
+      it "カフェの件数が表示されていることを確認" do
+        expect(page).to have_content "カフェ (#{user.cafes.count})"
       end
 
-      it "料理の情報が表示されていることを確認" do
+      it "カフェの情報が表示されていることを確認" do
         Cafe.take(5).each do |cafe|
           expect(page).to have_link cafe.name
           expect(page).to have_content cafe.description
@@ -133,7 +133,7 @@ RSpec.describe "Users", type: :system do
         end
       end
 
-      it "料理のページネーションが表示されていることを確認" do
+      it "カフェのページネーションが表示されていることを確認" do
         expect(page).to have_css "div.pagination"
       end
     end

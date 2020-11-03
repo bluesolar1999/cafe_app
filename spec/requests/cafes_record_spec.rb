@@ -15,7 +15,7 @@ RSpec.describe "カフェ登録", type: :request do
       expect(response).to render_template('cafes/new')
     end
 
-    it "有効な料理データで登録できること" do
+    it "有効なカフェデータで登録できること" do
       expect {
         post cafes_path, params: { cafe: { name: "イカの塩焼き",
                                             description: "冬に食べたくなる、身体が温まる料理です",
@@ -27,7 +27,7 @@ RSpec.describe "カフェ登録", type: :request do
       expect(response).to render_template('static_pages/home')
     end
 
-    it "無効な料理データでは登録できないこと" do
+    it "無効なカフェデータでは登録できないこと" do
       expect {
         post cafes_path, params: { cafe: { name: "",
                                             description: "冬に食べたくなる、身体が温まる料理です",

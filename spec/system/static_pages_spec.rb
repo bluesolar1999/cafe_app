@@ -44,14 +44,14 @@ RSpec.describe "StaticPages", type: :system do
       expect(page).to have_title full_title('利用規約')
     end
 
-    context "料理フィード", js: true do
+    context "カフェフィード", js: true do
       let!(:user) { create(:user) }
       let!(:cafe) { create(:cafe, user: user) }
       before do
         login_for_system(user)
       end
 
-      it "料理のぺージネーションが表示されること" do
+      it "カフェのぺージネーションが表示されること" do
         login_for_system(user)
         create_list(:cafe, 6, user: user)
         visit root_path
@@ -61,9 +61,9 @@ RSpec.describe "StaticPages", type: :system do
           expect(page).to have_link d.name
         end
       end
-      it "「新しい料理を作る」リンクが表示されること" do
+      it "「新しいカフェを作る」リンクが表示されること" do
         visit root_path
-        expect(page).to have_link "新しい料理を作る", href: new_dish_path
+        expect(page).to have_link "新しいカフェを投稿", href: new_cafe_path
       end
     end
   end
