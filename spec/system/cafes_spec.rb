@@ -2,6 +2,7 @@ require 'rails_helper'
 
 RSpec.describe "Cafes", type: :system do
   let!(:user) { create(:user) }
+  let!(:cafe) { create(:cafe, user: user) }
 
   describe "カフェ登録ページ" do
     before do
@@ -46,6 +47,27 @@ RSpec.describe "Cafes", type: :system do
         fill_in "人気度", with: 5
         click_button "登録する"
         expect(page).to have_content "カフェ名を入力してください"
+      end
+    end
+  end
+
+  describe "カフェ詳細ページ" do
+    context "ページレイアウト" do
+      before do
+        login_for_system(user)
+        visit cafe_path(cafe)
+      end
+
+      it "正しいタイトルが表示されること" do
+        expect(page).to have_title full_title("#{cafe.name}")
+      end
+
+      it "カフェ情報が表示されること" do
+        expect(page).to have_content cafe.name
+        expect(page).to have_content cafe.description
+        expect(page).to have_content cafe.order
+        expect(page).to have_content cafe.reference
+        expect(page).to have_content cafe.popularity
       end
     end
   end

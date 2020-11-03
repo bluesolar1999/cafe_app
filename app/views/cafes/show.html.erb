@@ -1,0 +1,14 @@
+<% provide(:title, "#{@cafe.name}") %>
+<div class="container">
+  <div class="row">
+    <h2 class="cafe-name"><%= @cafe.name %></h2>
+    <h4><%= @cafe.description %></h4>
+    <h4 class="cafe-reference">URL：<%= link_to "#{@cafe.reference}", @cafe.reference, target: "_blank" %></h4>
+    <h4 class="cafe-order">注文したもの：<%= @cafe.order %></h4>
+    <div class="show-cafe-other-info">
+      <div class="cafe-info">
+        <h5>人気度：</h5><h4><%= @cafe.popularity %></h4>
+      </div>
+    </div>
+  </div>
+</div>

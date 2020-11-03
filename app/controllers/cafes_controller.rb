@@ -5,11 +5,15 @@ class CafesController < ApplicationController
     @cafe = Cafe.new
   end
 
+  def show
+    @dish = Dish.find(params[:id])
+  end
+
   def create
     @cafe = current_user.cafes.build(cafe_params)
     if @cafe.save
       flash[:success] = "カフェが登録されました！"
-      redirect_to root_url
+      redirect_to cafe_path(@cafe)
     else
       render 'cafes/new'
     end

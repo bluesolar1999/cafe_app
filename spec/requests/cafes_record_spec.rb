@@ -24,7 +24,7 @@ RSpec.describe "カフェ登録", type: :request do
                                             popularity: 5 } }
       }.to change(Cafe, :count).by(1)
       follow_redirect!
-      expect(response).to render_template('static_pages/home')
+      expect(response).to render_template('cafes/show')
     end
 
     it "無効なカフェデータでは登録できないこと" do

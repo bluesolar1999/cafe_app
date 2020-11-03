@@ -214,3 +214,58 @@ span.picture {
 .input-unneed {
   font-size: 13px;
 }
+
+//// 料理個別ページ ////
+.cafe-user-name {
+  display: inline-block;
+}
+
+h2.cafe-name {
+  font-size: 30px;
+  margin-top: 10px;
+  margin-bottom: 10px;
+  display: inline-block;
+}
+
+.cafe-reference {
+  margin-top: 30px;
+}
+
+.cafe-portion {
+  margin-top: 30px;
+}
+
+.tips {
+  margin-top: 30px;
+  margin-bottom: 30px;
+  h5 {
+    font-size: 17px;
+  }
+}
+
+.title-tips {
+  font-size: 17px;
+  font-weight: bold;
+  margin-top: 10px;
+  margin-bottom: 0;
+}
+
+.show-cafe-other-info {
+  margin-top: 30px;
+  margin-bottom: 30px;
+}
+
+.cafe-other-info {
+  margin-top: 10px;
+  margin-bottom: 20px;
+}
+
+.cafe-info {
+  h5 {
+    font-size: 16px;
+    display: inline-block;
+  }
+  h4 {
+    font-size: 20px;
+    display: inline-block;
+  }
