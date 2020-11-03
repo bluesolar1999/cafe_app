@@ -2,6 +2,11 @@
 <div class="container">
   <div class="row">
     <h2 class="cafe-name"><%= @cafe.name %></h2>
+    <div class="change-cafe">
+      <% if current_user == @cafe.user %>
+        <%= link_to "編集", edit_cafe_path(@cafe), class: 'edit-cafe' %>　
+      <% end %>
+    </div>
     <h4><%= @cafe.description %></h4>
     <h4 class="cafe-reference">URL：<%= link_to "#{@cafe.reference}", @cafe.reference, target: "_blank" %></h4>
     <h4 class="cafe-order">注文したもの：<%= @cafe.order %></h4>

@@ -1,5 +1,6 @@
 class CafesController < ApplicationController
   before_action :logged_in_user
+  before_action :correct_user, only: [:edit, :update]
 
   def new
     @cafe = Cafe.new
@@ -19,10 +20,30 @@ class CafesController < ApplicationController
     end
   end
 
+  def edit
+    @cafe = Cafe.find(params[:id])
+  end
+
+  def update
+    @cafe = Cafe.find(params[:id])
+    if @cafe.update_attributes(cafe_params)
+      flash[:success] = "カフェ情報が更新されました！"
+      redirect_to @cafe
+    else
+      render 'edit'
+    end
+  end
+
   private
 
     def cafe_params
       params.require(:cafe).permit(:name, :discription, :order,
                                    :reference, :popularity)
+    end
+
+    def correct_user
+      # 現在のユーザーが更新対象の料理を保有しているかどうか確認
+      @cafe = current_user.cafes.find_by(id: params[:id])
+      redirect_to root_url if @cafe.nil?
     end
 end
