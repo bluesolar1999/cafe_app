@@ -28,6 +28,7 @@ ja:
         reference: 参照URL
         popularity: 人気度
         user_id: 作成者のID
+        picture: 注文したものの写真
   date:
     abbr_day_names:
     - 日
