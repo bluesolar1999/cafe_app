@@ -6,7 +6,7 @@ class CafesController < ApplicationController
   end
 
   def show
-    @dish = Dish.find(params[:id])
+    @cafe = Cafe.find(params[:id])
   end
 
   def create
