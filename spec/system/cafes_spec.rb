@@ -2,7 +2,7 @@ require 'rails_helper'
 
 RSpec.describe "Cafes", type: :system do
   let!(:user) { create(:user) }
-  let!(:cafe) { create(:cafe, user: user) }
+  let!(:cafe) { create(:cafe, :picture, user: user) }
 
   describe "カフェ登録ページ" do
     before do
@@ -35,8 +35,15 @@ RSpec.describe "Cafes", type: :system do
         fill_in "注文したもの", with: "coffee"
         fill_in "参照URL", with: "https://cookpad.com/recipe/2798655"
         fill_in "人気度", with: 5
+        attach_file "cafe[picture]", "#{Rails.root}/spec/fixtures/test_cafe.jpg"
         click_button "登録する"
         expect(page).to have_content "カフェが登録されました！"
+      end
+
+      it "画像無しで登録すると、デフォルト画像が割り当てられること" do
+        fill_in "カフェ名", with: "イカの塩焼き"
+        click_button "登録する"
+        expect(page).to have_link(href: cafe_path(Cafe.first))
       end
 
       it "無効な情報でカフェ登録を行うとカフェ登録失敗のフラッシュが表示されること" do
@@ -79,6 +86,7 @@ RSpec.describe "Cafes", type: :system do
         fill_in "注文したもの", with: "coffee"
         fill_in "参照URL", with: "henshu-https://cookpad.com/recipe/2798655"
         fill_in "人気度", with: 1
+        attach_file "cafe[picture]", "#{Rails.root}/spec/fixtures/test_cafe2.jpg"
         click_button "更新する"
         expect(page).to have_content "カフェ情報が更新されました！"
         expect(cafe.reload.name).to eq "編集：イカの塩焼き"
@@ -86,6 +94,7 @@ RSpec.describe "Cafes", type: :system do
         expect(cafe.reload.order).to eq "coffee"
         expect(cafe.reload.reference).to eq "henshu-https://cookpad.com/recipe/2798655"
         expect(cafe.reload.popularity).to eq 1
+        expect(cafe.reload.picture.url).to include "fixture/test_cafe2.jpg"
       end
 
       it "無効な更新" do
@@ -122,6 +131,7 @@ RSpec.describe "Cafes", type: :system do
         expect(page).to have_content cafe.order
         expect(page).to have_content cafe.reference
         expect(page).to have_content cafe.popularity
+        expect(page).to have_link nil, href: cafe_path(cafe), class: 'cafe-picture'
       end
     end
 

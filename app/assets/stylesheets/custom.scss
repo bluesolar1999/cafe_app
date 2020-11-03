@@ -278,3 +278,9 @@ h2.cafe-name {
 .edit-cafe .delete-cafe {
   font-size: 15px;
 }
+
+.cafe-picture img {
+  max-width: 100%;
+  height: auto;
+  box-sizing: border-box;
+}

@@ -3,6 +3,8 @@ require "rails_helper"
 RSpec.describe "カフェ登録", type: :request do
   let!(:user) { create(:user) }
   let!(:cafe) { create(:cafe, user: user) }
+  let(:picture_path) { File.join(Rails.root, 'spec/fixtures/test_cafe.jpg') }
+  let(:picture) { Rack::Test::UploadedFile.new(picture_path) }
 
   context "ログインしているユーザーの場合" do
     before do
@@ -22,7 +24,8 @@ RSpec.describe "カフェ登録", type: :request do
                                             description: "冬に食べたくなる、身体が温まる料理です",
                                             order: "coffee",
                                             reference: "https://cookpad.com/recipe/2798655",
-                                            popularity: 5 } }
+                                            popularity: 5,
+                                            picture: picture } }
       }.to change(Cafe, :count).by(1)
       follow_redirect!
       expect(response).to render_template('cafes/show')
@@ -34,7 +37,8 @@ RSpec.describe "カフェ登録", type: :request do
                                             description: "冬に食べたくなる、身体が温まる料理です",
                                             order: "coffee",
                                             reference: "https://cookpad.com/recipe/2798655",
-                                            popularity: 5 } }
+                                            popularity: 5,
+                                            picture: picture} }
       }.not_to change(Cafe, :count)
       expect(response).to render_template('cafes/new')
     end
