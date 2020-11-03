@@ -51,28 +51,7 @@ RSpec.describe "Cafes", type: :system do
     end
   end
 
-  describe "カフェ詳細ページ" do
-    context "ページレイアウト" do
-      before do
-        login_for_system(user)
-        visit cafe_path(cafe)
-      end
-
-      it "正しいタイトルが表示されること" do
-        expect(page).to have_title full_title("#{cafe.name}")
-      end
-
-      it "カフェ情報が表示されること" do
-        expect(page).to have_content cafe.name
-        expect(page).to have_content cafe.description
-        expect(page).to have_content cafe.order
-        expect(page).to have_content cafe.reference
-        expect(page).to have_content cafe.popularity
-      end
-    end
-  end
-
-  describe "料理編集ページ" do
+  describe "投稿編集ページ" do
     before do
       login_for_system(user)
       visit cafe_path(cafe)
@@ -114,6 +93,47 @@ RSpec.describe "Cafes", type: :system do
         click_button "更新する"
         expect(page).to have_content 'カフェ名を入力してください'
         expect(cafe.reload.name).not_to eq ""
+      end
+    end
+
+    context "投稿の削除処理", js: true do
+      it "削除成功のフラッシュが表示されること" do
+        click_on '削除'
+        page.driver.browser.switch_to.alert.accept
+        expect(page).to have_content '投稿が削除されました'
+      end
+    end
+  end
+
+  describe "カフェ詳細ページ" do
+    context "ページレイアウト" do
+      before do
+        login_for_system(user)
+        visit cafe_path(cafe)
+      end
+
+      it "正しいタイトルが表示されること" do
+        expect(page).to have_title full_title("#{cafe.name}")
+      end
+
+      it "カフェ情報が表示されること" do
+        expect(page).to have_content cafe.name
+        expect(page).to have_content cafe.description
+        expect(page).to have_content cafe.order
+        expect(page).to have_content cafe.reference
+        expect(page).to have_content cafe.popularity
+      end
+    end
+
+    context "投稿の削除処理", js: true do
+      it "削除成功のフラッシュが表示されること" do
+        login_for_system(user)
+        visit cafe_path(cafe)
+        within find('.change-cafe') do
+          click_on '削除'
+        end
+        page.driver.browser.switch_to.alert.accept
+        expect(page).to have_content '料理が削除されました'
       end
     end
   end

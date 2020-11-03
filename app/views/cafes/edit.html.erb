@@ -25,6 +25,9 @@
           <%= f.text_field :popularity, class: 'form-control', id: 'cafe_popularity' %>
         </div>
         <%= f.submit "更新する", class: "btn btn-primary" %>
+        <p></p>
+        <%= link_to "料理を削除する", cafe_path(@cafe), method: :delete,
+                                  data: { confirm: "本当にこの料理を削除してよろしいですか？" } %>
       <% end %>
     </div>
   </div>

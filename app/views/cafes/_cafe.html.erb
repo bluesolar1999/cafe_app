@@ -7,4 +7,8 @@
   <span class="reference"><%= link_to "作り方", cafe.reference, target: :_blank %></span>
     <%= time_ago_in_words(cafe.created_at) %>前に投稿
   </span>
+  <% if current_user.admin? || (current_user == cafe.user) %>
+    <%= link_to "削除", cafe_path(cafe), method: :delete,
+                       data: { confirm: "本当に削除しますか？" } %>
+  <% end %>
 </li>
