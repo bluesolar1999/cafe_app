@@ -4,6 +4,7 @@ RSpec.describe "Users", type: :system do
   let!(:user) { create(:user) }
   let!(:admin_user) { create(:user, :admin) }
   let!(:other_user) { create(:user) }
+  let!(:cafe) { create(:cafe, user: user) }
 
   describe "ユーザー一覧ページ" do
     context "管理者ユーザーの場合" do
@@ -148,6 +149,20 @@ RSpec.describe "Users", type: :system do
         expect(page).to have_button 'フォロー中'
         click_button 'フォロー中'
         expect(page).to have_button 'フォローする'
+      end
+    end
+
+    context "お気に入り登録/解除" do
+      before do
+        login_for_system(user)
+      end
+
+      it "料理のお気に入り登録/解除ができること" do
+        expect(user.favorite?(cafe)).to be_falsey
+        user.favorite(cafe)
+        expect(user.favorite?(cafe)).to be_truthy
+        user.unfavorite(cafe)
+        expect(user.favorite?(cafe)).to be_falsey
       end
     end
   end

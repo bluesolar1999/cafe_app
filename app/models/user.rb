@@ -78,6 +78,20 @@ class User < ApplicationRecord
     followers.include?(other_user)
   end
 
+  # 料理をお気に入りに登録する
+  def favorite(cafe)
+    Favorite.create!(user_id: id, cafe_id: cafe.id)
+  end
+
+  # 料理をお気に入り解除する
+  def unfavorite(cafe)
+    Favorite.find_by(user_id: id, cafe_id: cafe.id).destroy
+  end
+
+  # 現在のユーザーがお気に入り登録してたらtrueを返す
+  def favorite?(cafe)
+    !Favorite.find_by(user_id: id, cafe_id: cafe.id).nil?
+  end
 
   private
 
