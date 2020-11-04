@@ -13,4 +13,6 @@ Rails.application.routes.draw do
   end
   resources :cafes
   resources :relationships, only: [:create, :destroy]
+  post   "favorites/:cafe_id/create"  => "favorites#create"
+  delete "favorites/:cafe_id/destroy" => "favorites#destroy"
  end
