@@ -1,9 +1,11 @@
-
 RSpec.describe "Relationships", type: :system do
   let!(:user) { create(:user) }
   let!(:user2) { create(:user) }
   let!(:user3) { create(:user) }
   let!(:user4) { create(:user) }
+  let!(:cafe) { create(:cafe, user: user) }
+  let!(:cafe2) { create(:cafe, user: user2) }
+  let!(:cafe3) { create(:cafe, user: user3) }
 
   describe "フォロー中(following一覧)ページ" do
     before do
@@ -25,7 +27,7 @@ RSpec.describe "Relationships", type: :system do
       it "ユーザー情報が表示されていること" do
         expect(page).to have_content user.name
         expect(page).to have_link "プロフィール", href: user_path(user)
-        expect(page).to have_content "カフェ#{user.cafees.count}件"
+        expect(page).to have_content "カフェ#{user.cafes.count}件"
         expect(page).to have_link "#{user.following.count}人をフォロー", href: following_user_path(user)
         expect(page).to have_link "#{user.followers.count}人のフォロワー", href: followers_user_path(user)
       end
@@ -75,6 +77,25 @@ RSpec.describe "Relationships", type: :system do
           end
         end
       end
+    end
+  end
+
+  describe "フィード" do
+    before do
+      create(:relationship, follower_id: user.id, followed_id: user2.id)
+      login_for_system(user)
+    end
+
+    it "フィードに自分の投稿が含まれていること" do
+      expect(user.feed).to include cafe
+    end
+
+    it "フィードにフォロー中ユーザーの投稿が含まれていること" do
+      expect(user.feed).to include cafe2
+    end
+
+    it "フィードにフォローしていないユーザーの投稿が含まれていないこと" do
+      expect(user.feed).not_to include cafe3
     end
   end
 end

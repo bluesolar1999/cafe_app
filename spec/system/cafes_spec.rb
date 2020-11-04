@@ -143,7 +143,7 @@ RSpec.describe "Cafes", type: :system do
           click_on '削除'
         end
         page.driver.browser.switch_to.alert.accept
-        expect(page).to have_content '料理が削除されました'
+        expect(page).to have_content '投稿が削除されました'
       end
     end
   end

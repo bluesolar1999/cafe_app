@@ -1,11 +1,11 @@
 require "rails_helper"
 
-RSpec.describe "料理の削除", type: :request do
+RSpec.describe "投稿の削除", type: :request do
   let!(:user) { create(:user) }
   let!(:other_user) { create(:user) }
   let!(:cafe) { create(:cafe, user: user) }
 
-  context "ログインしていて、自分の料理を削除する場合" do
+  context "ログインしていて、自分の投稿を削除する場合" do
     it "処理が成功し、トップページにリダイレクトすること" do
       login_for_request(user)
       expect {
@@ -17,7 +17,7 @@ RSpec.describe "料理の削除", type: :request do
     end
   end
 
-  context "ログインしていて、他人の料理を削除する場合" do
+  context "ログインしていて、他人の投稿を削除する場合" do
     it "処理が失敗し、トップページへリダイレクトすること" do
       login_for_request(other_user)
       expect {
