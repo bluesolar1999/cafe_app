@@ -5,6 +5,7 @@ RSpec.describe "Users", type: :system do
   let!(:admin_user) { create(:user, :admin) }
   let!(:other_user) { create(:user) }
   let!(:cafe) { create(:cafe, user: user) }
+  let!(:other_cafe) { create(:cafe, user: other_user) }
 
   describe "ユーザー一覧ページ" do
     context "管理者ユーザーの場合" do
@@ -199,6 +200,27 @@ RSpec.describe "Users", type: :system do
         link.click
         link = find('.like')
         expect(link[:href]).to include "/favorites/#{cafe.id}/create"
+      end
+
+      it "お気に入り一覧ページが期待通り表示されること" do
+        visit favorites_path
+        expect(page).not_to have_css ".favorite-cafe"
+        user.favorite(cafe)
+        user.favorite(other_cafe)
+        visit favorites_path
+        expect(page).to have_css ".favorite-cafe", count: 2
+        expect(page).to have_content cafe.name
+        expect(page).to have_content cafe.description
+        expect(page).to have_content "cooked by #{user.name}"
+        expect(page).to have_link user.name, href: user_path(user)
+        expect(page).to have_content other_cafe.name
+        expect(page).to have_content other_cafe.description
+        expect(page).to have_content "cooked by #{other_user.name}"
+        expect(page).to have_link other_user.name, href: user_path(other_user)
+        user.unfavorite(other_cafe)
+        visit favorites_path
+        expect(page).to have_css ".favorite-cafe", count: 1
+        expect(page).to have_content cafe.name
       end
     end
   end

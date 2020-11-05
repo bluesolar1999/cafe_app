@@ -1,0 +1,14 @@
+<% @cafe = Cafe.find(favorite.cafe_id) %>
+<% user = @cafe.user %>
+<li id="favorite-<%= favorite.id %>">
+  <div class="row favorite-cafe">
+    <div class="col-md-2">
+      <%= link_to((image_tag @cafe.picture.url), cafe_path(@cafe), class: 'cafe-picture') %>
+    </div>
+    <div class="col-md-7">
+      <p><%= link_to @cafe.name, cafe_path(@cafe) %></p>
+      <p><%= @cafe.description %></p>
+      <p class="cook-user">cooked by <%= link_to user.name, user_path(user) %></p>
+    </div>
+  </div>
+</li>
