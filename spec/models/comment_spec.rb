@@ -14,7 +14,7 @@ RSpec.describe Comment, type: :model do
     end
 
     it "cafe_idがなければ無効な状態であること" do
-      comment = build(:comment, dcafe_id: nil)
+      comment = build(:comment, cafe_id: nil)
       expect(comment).not_to be_valid
     end
 
