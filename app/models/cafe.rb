@@ -16,6 +16,10 @@ class Cafe < ApplicationRecord
             allow_nil: true
   validate  :picture_size
 
+  def feed_comment(cafe_id)
+    Comment.where("cafe_id = ?", cafe_id)
+  end
+
   private
 
     # アップロードされた画像のサイズを制限する
