@@ -12,7 +12,7 @@ RSpec.describe Notification, type: :model do
     expect(notification).not_to be_valid
   end
 
-  it "dish_idがnilの場合、無効であること" do
+  it "cafe_idがnilの場合、無効であること" do
     notification.cafe_id = nil
     expect(notification).not_to be_valid
   end
