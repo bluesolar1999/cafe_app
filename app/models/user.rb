@@ -95,6 +95,21 @@ class User < ApplicationRecord
     !Favorite.find_by(user_id: id, cafe_id: cafe.id).nil?
   end
 
+  # 料理をリストに登録する
+  def list(cafe)
+    List.create!(user_id: cafe.user_id, cafe_id: cafe.id, from_user_id: id)
+  end
+
+  # 料理をリストから解除する
+  def unlist(list)
+    list.destroy
+  end
+
+  # 現在のユーザーがリスト登録してたらtrueを返す
+  def list?(cafe)
+    !List.find_by(cafe_id: cafe.id, from_user_id: id).nil?
+  end
+
   private
 
    def downcase_email
