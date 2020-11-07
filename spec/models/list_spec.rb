@@ -12,7 +12,7 @@ RSpec.describe List, type: :model do
     expect(list).not_to be_valid
   end
 
-  it "dish_idがnilの場合、無効であること" do
+  it "cafe_idがnilの場合、無効であること" do
     list.cafe_id = nil
     expect(list).not_to be_valid
   end
