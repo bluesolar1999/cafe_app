@@ -83,7 +83,7 @@ RSpec.describe "Cafes", type: :system do
 
     context "カフェの更新処理" do
       it "有効な更新" do
-        fill_in "カフェ名", with: "編集：イカの塩焼き"
+        fill_in "カフェ名", with: "編集：スターバックス"
         fill_in "説明", with: "編集：冬に食べたくなる、身体が温まる料理です"
         fill_in "注文したもの", with: "coffee"
         fill_in "参照URL", with: "henshu-https://cookpad.com/recipe/2798655"
@@ -91,7 +91,7 @@ RSpec.describe "Cafes", type: :system do
         attach_file "cafe[picture]", "#{Rails.root}/spec/fixtures/test_cafe2.jpg"
         click_button "更新する"
         expect(page).to have_content "カフェ情報が更新されました！"
-        expect(cafe.reload.name).to eq "編集：イカの塩焼き"
+        expect(cafe.reload.name).to eq "編集：スターバックス"
         expect(cafe.reload.description).to eq "冬に食べたくなる、身体が温まる料理です"
         expect(cafe.reload.order).to eq "coffee"
         expect(cafe.reload.reference).to eq "henshu-https://cookpad.com/recipe/2798655"
@@ -150,7 +150,7 @@ RSpec.describe "Cafes", type: :system do
     end
 
     context "コメントの登録＆削除" do
-      it "自分の料理に対するコメントの登録＆削除が正常に完了すること" do
+      it "自分の投稿に対するコメントの登録＆削除が正常に完了すること" do
         login_for_system(user)
         visit cafe_path(cafe)
         fill_in "comment_content", with: "今日の味付けは大成功"
@@ -165,7 +165,7 @@ RSpec.describe "Cafes", type: :system do
         expect(page).to have_content "コメントを削除しました"
       end
 
-      it "別ユーザーの料理のコメントには削除リンクが無いこと" do
+      it "別ユーザーの投稿のコメントには削除リンクが無いこと" do
         login_for_system(other_user)
         visit cafe_path(cafe)
         within find("#comment-#{comment.id}") do
