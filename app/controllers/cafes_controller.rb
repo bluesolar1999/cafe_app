@@ -47,16 +47,11 @@ class CafesController < ApplicationController
     end
   end
 
-  def cafe_params
-    params.require(:cafe).permit(:name, :description, :order,
-                                 :reference, :popularity, :picture)
-  end
-
   private
 
     def cafe_params
       params.require(:cafe).permit(:name, :discription, :order,
-                                   :reference, :popularity)
+                                   :reference, :popularity, :picture)
     end
 
     def correct_user
