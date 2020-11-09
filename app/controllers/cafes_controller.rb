@@ -6,6 +6,9 @@ class CafesController < ApplicationController
     @cafe = Cafe.new
   end
 
+  def index
+  end
+
   def show
     @cafe = Cafe.find(params[:id])
     @comment = Comment.new
