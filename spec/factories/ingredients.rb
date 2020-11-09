@@ -1,6 +1,6 @@
 FactoryBot.define do
   factory :ingredient do
-    name "MyString"
-    cafe_id 1
+    name { "横浜" }
+    association :cafe
   end
 end

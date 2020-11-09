@@ -16,6 +16,25 @@
     <%= f.label :order %>　<span class="input-unneed">※任意</span>
     <%= f.text_field :order, class: 'form-control', id: 'cafe_order' %>
   </div>
+  <%= f.fields_for :ingredients do |i| %>
+    <div class="row">
+      <div class="col-md-9">
+        <div class = 'form-group'>
+          <%= i.label :name %>　<span class="input-unneed">※任意</span>
+          <%= i.text_field :name, class: 'form-control ingredient_name' %>
+        </div>
+      </div>
+    </div>
+  <% end %>
+  <%= render partial: "ingredient_form", locals: {f: f} %>
+  <%= render partial: "ingredient_form", locals: {f: f} %>
+  <%= render partial: "ingredient_form", locals: {f: f} %>
+  <%= render partial: "ingredient_form", locals: {f: f} %>
+  <%= render partial: "ingredient_form", locals: {f: f} %>
+  <%= render partial: "ingredient_form", locals: {f: f} %>
+  <%= render partial: "ingredient_form", locals: {f: f} %>
+  <%= render partial: "ingredient_form", locals: {f: f} %>
+  <%= render partial: "ingredient_form", locals: {f: f} %>
   <div class = 'form-group'>
     <%= f.label :reference %>　<span class="input-unneed">※任意</span>
     <%= f.text_field :reference, class: 'form-control', id: 'cafe_reference' %>
