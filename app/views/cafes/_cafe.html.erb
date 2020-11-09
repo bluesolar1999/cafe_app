@@ -13,11 +13,11 @@
       <h4 class="cafe-order"><%= link_to cafe.order, cafe_path(cafe) %></h4>
       <div class="cafe-description"><%= cafe.description %></div>
       <div class="cafe-user">by <%= link_to cafe.user.name, user_path(cafe.user) %></div>
-      <div class="dish-ingredient">
-        <p class="title-ingredient-mini">【材料】</p>
-        <% dish.ingredients.each_with_index do |ing, i| %>
+      <div class="cafe-ingredient">
+        <p class="title-ingredient-mini">【駅】</p>
+        <% cafe.ingredients.each_with_index do |ing, i| %>
           <% if ing.name.present? %>
-            <%= "｜" unless i == 0 %><%= ing.name %>: <%= ing.quantity %>
+            <%= "｜" unless i == 0 %><%= ing.name %>
           <% end %>
         <% end %>
       </div>

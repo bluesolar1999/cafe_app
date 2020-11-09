@@ -28,7 +28,7 @@ RSpec.describe "カフェ登録", type: :request do
                                            popularity: 5,
                                            picture: picture,
                                            ingredients_attributes: [
-                                            name: "横浜" } }
+                                            name: "横浜" ] } }
       }.to change(Cafe, :count).by(1)
       redirect_to Cafe.first
       follow_redirect!
@@ -52,23 +52,23 @@ RSpec.describe "カフェ登録", type: :request do
                                            popularity: 5,
                                            picture: picture,
                                            ingredients_attributes: [
-                                            name: "横浜" } }
+                                            name: "横浜"] } }
       }.not_to change(Cafe, :count)
       expect(response).to render_template('cafes/new')
     end
-  end
 
-  context "材料無しの料理登録" do
-    it "正常に完了すること" do
+    context "材料無しの料理登録" do
+      it "正常に完了すること" do
+        expect {
+          post cafes_path, params: { cafe: { name: "イカの塩焼き" } }
+        }.to change(Cafe, :count).by(1)
+      end
+
+      it "材料のデータは増えないこと" do
       expect {
         post cafes_path, params: { cafe: { name: "イカの塩焼き" } }
-      }.to change(Cafe, :count).by(1)
-    end
-
-    it "材料のデータは増えないこと" do
-    expect {
-      post cafes_path, params: { cafe: { name: "イカの塩焼き" } }
-    }.not_to change(Ingredient, :count)
+      }.not_to change(Ingredient, :count)
+      end
     end
   end
 
