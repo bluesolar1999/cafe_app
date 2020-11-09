@@ -27,7 +27,7 @@ RSpec.describe "Cafes", type: :system do
         expect(page).to have_content '注文したもの'
         expect(page).to have_content '参照URL'
         expect(page).to have_content '人気度 [1~5]'
-        expect(page).to have_css 'label[for=dish_ingredients_attributes_0_name]',
+        expect(page).to have_css 'label[for=cafe_ingredients_attributes_0_name]',
                                text: '駅（10種類まで登録可）', count: 1
       end
 
@@ -43,7 +43,7 @@ RSpec.describe "Cafes", type: :system do
         fill_in "注文したもの", with: "coffee"
         fill_in "参照URL", with: "https://cookpad.com/recipe/2798655"
         fill_in "人気度", with: 5
-        fill_in "dish[ingredients_attributes][0][name]", with: "横浜"
+        fill_in "cafe[ingredients_attributes][0][name]", with: "横浜"
         attach_file "cafe[picture]", "#{Rails.root}/spec/fixtures/test_cafe.jpg"
         click_button "登録する"
         expect(page).to have_content "カフェが登録されました！"
@@ -143,6 +143,9 @@ RSpec.describe "Cafes", type: :system do
         expect(page).to have_content cafe.reference
         expect(page).to have_content cafe.popularity
         expect(page).to have_link nil, href: cafe_path(cafe), class: 'cafe-picture'
+        cafe.ingredients.each do |i|
+          expect(page).to have_content i.name
+        end
       end
     end
 
