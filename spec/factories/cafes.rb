@@ -24,4 +24,21 @@ FactoryBot.define do
   trait :picture do
     picture { Rack::Test::UploadedFile.new(File.join(Rails.root, 'spec/fixtures/test_cafe.jpg')) }
   end
+
+  trait :ingredients do
+    ingredients_attributes {
+                             [
+                               { name: "横浜"},
+                               { name: "新宿"},
+                               { name: "渋谷"},
+                               { name: "海老名"},
+                               { name: "平塚"},
+                               { name: "大船"},
+                               { name: "茅ヶ崎"},
+                               { name: "原宿"},
+                               { name: "下北沢"},
+                               { name: "伊勢原"}
+                             ]
+    }
+  end
 end

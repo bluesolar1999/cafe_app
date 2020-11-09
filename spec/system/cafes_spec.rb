@@ -3,7 +3,7 @@ require 'rails_helper'
 RSpec.describe "Cafes", type: :system do
   let!(:user) { create(:user) }
   let!(:other_user) { create(:user) }
-  let!(:cafe) { create(:cafe, :picture, user: user) }
+  let!(:cafe) { create(:cafe, :picture, :ingredients, user: user) }
   let!(:comment) { create(:comment, user_id: user.id, cafe: cafe) }
 
   describe "カフェ登録ページ" do
@@ -95,6 +95,7 @@ RSpec.describe "Cafes", type: :system do
         fill_in "注文したもの", with: "coffee"
         fill_in "参照URL", with: "henshu-https://cookpad.com/recipe/2798655"
         fill_in "人気度", with: 1
+        fill_in "cafe[ingredients_attributes][0][name]", with: "編集-横浜"
         attach_file "cafe[picture]", "#{Rails.root}/spec/fixtures/test_cafe2.jpg"
         click_button "更新する"
         expect(page).to have_content "カフェ情報が更新されました！"
@@ -104,6 +105,7 @@ RSpec.describe "Cafes", type: :system do
         expect(cafe.reload.reference).to eq "henshu-https://cookpad.com/recipe/2798655"
         expect(cafe.reload.popularity).to eq 1
         expect(cafe.reload.picture.url).to include "fixture/test_cafe2.jpg"
+        expect(cafe.reload.ingredients.first.name).to eq "編集-横浜"
       end
 
       it "無効な更新" do
