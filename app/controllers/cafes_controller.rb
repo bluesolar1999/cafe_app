@@ -8,8 +8,6 @@ class CafesController < ApplicationController
   end
 
   def index
-    @log = Log.new
-
     # CSV出力時のファイル名指定
     respond_to do |format|
       format.html

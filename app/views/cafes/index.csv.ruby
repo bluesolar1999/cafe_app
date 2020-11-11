@@ -15,13 +15,11 @@ CSV.generate do |csv|
     # まず駅以外のカラムを追加
     csv_column_values = [
       cafe.name,
+      cafe.order,
       cafe.description,
       cafe.user.name,
       cafe.reference,
-      cafe.tips,
-      cafe.required_time,
       cafe.popularity,
-      cafe.portion,
       cafe.created_at.strftime("%Y/%m/%d(%a)")
     ]
     # 駅の数(number_of_ingredients)を特定
@@ -36,7 +34,7 @@ CSV.generate do |csv|
     # 駅の数だけカラムを追加する
     i = 0
     while i <= number_of_ingredients
-      csv_column_values.push(cafe.ingredients[i].name, cafe.ingredients[i].quantity)
+      csv_column_values.push(cafe.ingredients[i].name)
       i += 1
     end
     # 最終的なcsv_column_valuesをcsvのセルに追加
