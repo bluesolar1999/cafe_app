@@ -1,5 +1,5 @@
-$main-magenta: #dd356e;
-$main-yellow: #fee856;
+$main-magenta: #2e2e2e;
+$main-yellow: #92D5E6;
 
 // ミックスイン
 @mixin box_sizing {
@@ -404,8 +404,8 @@ span.picture {
 // 「CSV出力」ボタン
 .btn-csv {
   color: black;
-  background-color: palegreen;
-  border-color: palegreen;
+  background-color: #92D5E6;
+  border-color: #92D5E6;
 }
 
 // 料理一覧

@@ -31,20 +31,21 @@ User.create!(
   user3.follow(user2)
 
   # 料理
-  description1 = "冬に食べたくなる、身体が温まる料理です。"
-  description2 = "栄養バランスが良いオススメ料理です。"
-  description3 = "スピード重視の簡単料理！"
+  description1 = "冬に飲みたくなる、身体が温まる飲み物です。"
+  description2 = "コーヒーとの相性が良いオススメスイーツです。"
+  description3 = "ランチにぴったりの食べ物です！"
 
-  ## 3ユーザー、それぞれ5料理ずつ作成
+  ## 3ユーザー、それぞれ5投稿ずつ作成
   Cafe.create!(
     [
       {
-        name: "肉じゃが",
+        name: "スターバックスコーヒー",
         user_id: 1,
+        order: "ソイラテ",
         description: description1,
-        reference: "https://cookpad.com/recipe/5905307",
+        reference: "https://www.starbucks.co.jp/",
         popularity: 3,
-        picture: open("#{Rails.root}/public/images/dish1.jpg"),
+        picture: open("#{Rails.root}/public/images/cafe1.jpg"),
         ingredients_attributes: [
                                   { name: "豚ロース肉"},
                                   { name: "じゃがいも"},
@@ -59,12 +60,13 @@ User.create!(
                                 ],
       },
       {
-        name: "ソーセージと卵の炒め物",
+        name: "DOUTOR",
         user_id: 2,
-        description: description2,
-        reference: "https://cookpad.com/recipe/5890533",
+        order: "カフェ・ラテ",
+        description: description1,
+        reference: "https://www.doutor.co.jp/dcs/",
         popularity: 4,
-        picture: open("#{Rails.root}/public/images/dish2.jpg"),
+        picture: open("#{Rails.root}/public/images/cafe2.jpg"),
         ingredients_attributes: [
                                   { name: "ソーセージ"},
                                   { name: "卵"},
@@ -79,12 +81,13 @@ User.create!(
                                 ],
       },
       {
-        name: "かに玉",
+        name: "コメダ珈琲店",
         user_id: 3,
-        description: description3,
-        reference: "https://cookpad.com/recipe/5826415",
+        order: "コメダブレンド",
+        description: description1,
+        reference: "http://www.komeda.co.jp/index.php",
         popularity: 4,
-        picture: open("#{Rails.root}/public/images/dish3.jpg"),
+        picture: open("#{Rails.root}/public/images/cafe3.jpg"),
         ingredients_attributes: [
                                   { name: "卵"},
                                   { name: "かに玉の素"},
@@ -99,12 +102,13 @@ User.create!(
                                 ],
       },
       {
-        name: "豚こまの生姜焼き",
+        name: "サンマルクカフェ",
         user_id: 1,
-        description: description2,
-        reference: "https://cookpad.com/recipe/5892456",
+        order: "抹茶ラテ",
+        description: description1,
+        reference: "https://www.saint-marc-hd.com/saintmarccafe/",
         popularity: 3,
-        picture: open("#{Rails.root}/public/images/dish4.jpg"),
+        picture: open("#{Rails.root}/public/images/cafe4.jpg"),
         ingredients_attributes: [
                                   { name: "豚こま切れ肉"},
                                   { name: "玉ねぎ"},
@@ -119,12 +123,13 @@ User.create!(
                                 ],
       },
       {
-        name: "鶏肉のチーズ照り焼き",
+        name: "TULLY'S",
         user_id: 2,
-        description: description3,
-        reference: "https://cookpad.com/recipe/5878179",
+        order: "エスプレッソ",
+        description: description1,
+        reference: "https://www.tullys.co.jp/",
         popularity: 5,
-        picture: open("#{Rails.root}/public/images/dish5.jpg"),
+        picture: open("#{Rails.root}/public/images/cafe5.jpg"),
         ingredients_attributes: [
                                   { name: "鶏肉"},
                                   { name: "チーズ"},
@@ -139,12 +144,13 @@ User.create!(
                                 ],
       },
       {
-        name: "タンドリーチキン",
+        name: "コメダ珈琲店",
         user_id: 3,
+        order: "純栗ぃむ",
         description: description2,
-        reference: "https://cookpad.com/recipe/5909869",
+        reference: "http://www.komeda.co.jp/index.php",
         popularity: 3,
-        picture: open("#{Rails.root}/public/images/dish6.jpg"),
+        picture: open("#{Rails.root}/public/images/cafe6.jpg"),
         ingredients_attributes: [
                                   { name: "鶏胸肉"},
                                   { name: "塩",},
@@ -159,12 +165,13 @@ User.create!(
                                 ],
       },
       {
-        name: "鶏肉の味噌照り焼き",
+        name: "サンマルクカフェ",
         user_id: 1,
-        description: description3,
-        reference: "https://cookpad.com/recipe/5899721",
+        order: "デニブラン　キャラメル",
+        description: description2,
+        reference: "https://www.saint-marc-hd.com/saintmarccafe/",
         popularity: 5,
-        picture: open("#{Rails.root}/public/images/dish7.jpg"),
+        picture: open("#{Rails.root}/public/images/cafe7.jpg"),
         ingredients_attributes: [
                                   { name: "鶏肉"},
                                   { name: "味噌"},
@@ -179,12 +186,13 @@ User.create!(
                                 ],
       },
       {
-        name: "豚しゃぶレタス",
+        name: "スターバックスコーヒー",
         user_id: 2,
-        description: description2,
-        reference: "https://cookpad.com/recipe/5849961",
+        order: "あらびきソーセージ＆スクランブルエッグ イングリッシュマフィン",
+        description: description3,
+        reference: "https://www.starbucks.co.jp/",
         popularity: 4,
-        picture: open("#{Rails.root}/public/images/dish8.jpg"),
+        picture: open("#{Rails.root}/public/images/cafe8.jpg"),
         ingredients_attributes: [
                                   { name: "レタス"},
                                   { name: "しゃぶしゃぶ用豚肉"},
@@ -199,12 +207,13 @@ User.create!(
                                 ],
       },
       {
-        name: "チーズオムレツ",
+        name: "TULLY'S",
         user_id: 3,
+        order: "小エビのウニトマトクリーム",
         description: description3,
-        reference: "https://cookpad.com/recipe/5355585",
+        reference: "https://www.tullys.co.jp/",
         popularity: 5,
-        picture: open("#{Rails.root}/public/images/dish9.jpg"),
+        picture: open("#{Rails.root}/public/images/cafe9.jpg"),
         ingredients_attributes: [
                                   { name: "卵"},
                                   { name: "とろけるチーズ"},
@@ -219,12 +228,13 @@ User.create!(
                                 ],
       },
       {
-        name: "スペインオムレツ",
+        name: "DOUTOR",
         user_id: 1,
-        description: description3,
-        reference: "https://cookpad.com/recipe/5712829",
+        order: "安納芋のミルクレープ",
+        description: description2,
+        reference: "https://www.doutor.co.jp/dcs/",
         popularity: 5,
-        picture: open("#{Rails.root}/public/images/dish10.jpg"),
+        picture: open("#{Rails.root}/public/images/cafe10.jpg"),
         ingredients_attributes: [
                                   { name: "卵"},
                                   { name: "じゃがいも"},
@@ -239,12 +249,13 @@ User.create!(
                                 ],
       },
       {
-        name: "ぶりの照り焼き",
+        name: "DOUTOR",
         user_id: 2,
-        description: description1,
-        reference: "https://cookpad.com/recipe/5628386",
+        order: "全粒粉サンド 大豆ミート ～和風トマトのソース～",
+        description: description3,
+        reference: "https://www.doutor.co.jp/dcs/",
         popularity: 3,
-        picture: open("#{Rails.root}/public/images/dish11.jpg"),
+        picture: open("#{Rails.root}/public/images/cafe11.jpg"),
         ingredients_attributes: [
                                   { name: "ブリ"},
                                   { name: "しょうゆ"},
@@ -259,12 +270,13 @@ User.create!(
                                 ],
       },
       {
-        name: "カレーライス",
+        name: "スターバックスコーヒー",
         user_id: 3,
-        description: description1,
-        reference: "https://cookpad.com/recipe/4779250",
+        order: "ニューヨークチーズケーキ",
+        description: description2,
+        reference: "https://www.starbucks.co.jp/",
         popularity: 4,
-        picture: open("#{Rails.root}/public/images/dish12.jpg"),
+        picture: open("#{Rails.root}/public/images/cafe12.jpg"),
         ingredients_attributes: [
                                   { name: "鶏肉"},
                                   { name: "玉ねぎ"},
@@ -279,12 +291,13 @@ User.create!(
                                 ],
       },
       {
-        name: "麻婆豆腐",
+        name: "サンマルクカフェ",
         user_id: 1,
-        description: description1,
-        reference: "https://cookpad.com/recipe/5908616",
+        order: "もっちりサンド　フレッシュ野菜アボガド",
+        description: description3,
+        reference: "https://www.saint-marc-hd.com/saintmarccafe/",
         popularity: 5,
-        picture: open("#{Rails.root}/public/images/dish13.jpg"),
+        picture: open("#{Rails.root}/public/images/cafe13.jpg"),
         ingredients_attributes: [
                                   { name: "牛ひき肉"},
                                   { name: "絹豆腐"},
@@ -299,12 +312,13 @@ User.create!(
                                 ],
       },
       {
-        name: "肉豆腐",
+        name: "コメダ珈琲店",
         user_id: 2,
-        description: description2,
-        reference: "https://cookpad.com/recipe/5866590",
+        order: "ハムサンド",
+        description: description3,
+        reference: "http://www.komeda.co.jp/index.php",
         popularity: 4,
-        picture: open("#{Rails.root}/public/images/dish14.jpg"),
+        picture: open("#{Rails.root}/public/images/cafe14.jpg"),
         ingredients_attributes: [
                                   { name: "大葉"},
                                   { name: "薄切り肉"},
@@ -319,12 +333,13 @@ User.create!(
                                 ],
       },
       {
-        name: "豚汁",
+        name: "TULLY'S",
         user_id: 3,
-        description: description1,
-        reference: "https://cookpad.com/recipe/5789404",
+        order: "クラシックパンケーキ メープルバター",
+        description: description2,
+        reference: "https://www.tullys.co.jp/",
         popularity: 5,
-        picture: open("#{Rails.root}/public/images/dish15.jpg"),
+        picture: open("#{Rails.root}/public/images/cafe15.jpg"),
         ingredients_attributes: [
                                   { name: "豚肉"},
                                   { name: "ごぼう"},
