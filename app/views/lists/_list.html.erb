@@ -7,7 +7,7 @@
     <% if list.user_id == list.from_user_id %>
       <p class="list-message">このカフェを行く予定リストに追加しました。</p>
     <% else %>
-      <p class="list-message"><%= link_to user.name, user_path(user) %>さんがこの料理に食べたいリクエストをしました。</p>
+      <p class="list-message"><%= link_to user.name, user_path(user) %>さんがこの投稿に行ってみたいリクエストをしました。</p>
     <% end %>
   </div>
   <div class="row">
