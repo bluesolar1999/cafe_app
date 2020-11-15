@@ -363,7 +363,7 @@ RSpec.describe "Users", type: :system do
       expect(page).to have_content cafe_2.name
       expect(page).to have_content cafe_2.description
       expect(page).to have_content List.first.created_at.strftime("%Y/%m/%d(%a) %H:%M")
-      expect(page).to have_content "#{other_user.name}さんがこの料理に食べたいリクエストをしました。"
+      expect(page).to have_content "#{other_user.name}さんがこの投稿に行ってみたいリクエストをしました。"
       expect(page).to have_link other_user.name, href: user_path(other_user)
       user.unlist(List.first)
       visit lists_path

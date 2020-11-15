@@ -7,6 +7,7 @@
     </div>
     <div class="col-md-7">
       <p><%= link_to @cafe.name, cafe_path(@cafe) %></p>
+      <p><%= @cafe.order %></p>
       <p><%= @cafe.description %></p>
       <p class="cook-user">cooked by <%= link_to user.name, user_path(user) %></p>
     </div>

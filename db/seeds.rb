@@ -30,7 +30,7 @@ User.create!(
   user3.follow(user1)
   user3.follow(user2)
 
-  # 料理
+  # カフェ
   description1 = "冬に飲みたくなる、身体が温まる飲み物です。"
   description2 = "コーヒーとの相性が良いオススメスイーツです。"
   description3 = "ランチにぴったりの食べ物です！"
@@ -235,7 +235,7 @@ User.create!(
 
   # コメント
   cafe15.comments.create(user_id: user1.id, content: "美味しそう！私も食べてみたい！")
-  cafe12.comments.create(user_id: user2.id, content: "また作ってー！")
+  cafe12.comments.create(user_id: user2.id, content: "今度一緒に行こう！")
 
   # 通知
   user3.notifications.create(user_id: user3.id, cafe_id: cafe15.id,

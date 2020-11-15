@@ -31,8 +31,8 @@ RSpec.describe "Cafes", type: :system do
                                text: '最寄り駅', count: 1
       end
 
-      it "材料入力部分が10行表示されること" do
-        expect(page).to have_css 'input.ingredient_name', count: 10
+      it "材料入力部分が1行表示されること" do
+        expect(page).to have_css 'input.ingredient_name', count: 1
       end
     end
 
