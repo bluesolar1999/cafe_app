@@ -28,7 +28,7 @@ RSpec.describe "Cafes", type: :system do
         expect(page).to have_content '参照URL'
         expect(page).to have_content '人気度 [1~5]'
         expect(page).to have_css 'label[for=cafe_ingredients_attributes_0_name]',
-                               text: '駅（10種類まで登録可）', count: 1
+                               text: '最寄り駅', count: 1
       end
 
       it "材料入力部分が10行表示されること" do

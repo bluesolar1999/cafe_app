@@ -47,16 +47,7 @@ User.create!(
         popularity: 3,
         picture: open("#{Rails.root}/public/images/cafe1.jpg"),
         ingredients_attributes: [
-                                  { name: "豚ロース肉"},
-                                  { name: "じゃがいも"},
-                                  { name: "にんじん"},
-                                  { name: "玉ねぎ"},
-                                  { name: "しょうゆ"},
-                                  { name: "みりん"},
-                                  { name: "酒"},
-                                  { name: ""},
-                                  { name: ""},
-                                  { name: ""}
+                                  { name: "平塚"}
                                 ],
       },
       {
@@ -68,16 +59,7 @@ User.create!(
         popularity: 4,
         picture: open("#{Rails.root}/public/images/cafe2.jpg"),
         ingredients_attributes: [
-                                  { name: "ソーセージ"},
-                                  { name: "卵"},
-                                  { name: "胡椒"},
-                                  { name: ""},
-                                  { name: ""},
-                                  { name: ""},
-                                  { name: ""},
-                                  { name: ""},
-                                  { name: ""},
-                                  { name: ""}
+                                  { name: "海老名"}
                                 ],
       },
       {
@@ -89,16 +71,7 @@ User.create!(
         popularity: 4,
         picture: open("#{Rails.root}/public/images/cafe3.jpg"),
         ingredients_attributes: [
-                                  { name: "卵"},
-                                  { name: "かに玉の素"},
-                                  { name: ""},
-                                  { name: ""},
-                                  { name: ""},
-                                  { name: ""},
-                                  { name: ""},
-                                  { name: ""},
-                                  { name: ""},
-                                  { name: ""}
+                                  { name: "平塚"}
                                 ],
       },
       {
@@ -110,16 +83,7 @@ User.create!(
         popularity: 3,
         picture: open("#{Rails.root}/public/images/cafe4.jpg"),
         ingredients_attributes: [
-                                  { name: "豚こま切れ肉"},
-                                  { name: "玉ねぎ"},
-                                  { name: ""},
-                                  { name: ""},
-                                  { name: ""},
-                                  { name: ""},
-                                  { name: ""},
-                                  { name: ""},
-                                  { name: ""},
-                                  { name: ""}
+                                  { name: "横浜"}
                                 ],
       },
       {
@@ -131,16 +95,7 @@ User.create!(
         popularity: 5,
         picture: open("#{Rails.root}/public/images/cafe5.jpg"),
         ingredients_attributes: [
-                                  { name: "鶏肉"},
-                                  { name: "チーズ"},
-                                  { name: ""},
-                                  { name: ""},
-                                  { name: ""},
-                                  { name: ""},
-                                  { name: ""},
-                                  { name: ""},
-                                  { name: ""},
-                                  { name: ""}
+                                  { name: "丸の内"}
                                 ],
       },
       {
@@ -152,16 +107,7 @@ User.create!(
         popularity: 3,
         picture: open("#{Rails.root}/public/images/cafe6.jpg"),
         ingredients_attributes: [
-                                  { name: "鶏胸肉"},
-                                  { name: "塩",},
-                                  { name: "胡椒"},
-                                  { name: ""},
-                                  { name: ""},
-                                  { name: ""},
-                                  { name: ""},
-                                  { name: ""},
-                                  { name: ""},
-                                  { name: ""}
+                                  { name: "鎌倉"}
                                 ],
       },
       {
@@ -173,16 +119,7 @@ User.create!(
         popularity: 5,
         picture: open("#{Rails.root}/public/images/cafe7.jpg"),
         ingredients_attributes: [
-                                  { name: "鶏肉"},
-                                  { name: "味噌"},
-                                  { name: "玉ねぎ"},
-                                  { name: ""},
-                                  { name: ""},
-                                  { name: ""},
-                                  { name: ""},
-                                  { name: ""},
-                                  { name: ""},
-                                  { name: ""}
+                                  { name: "戸塚"}
                                 ],
       },
       {
@@ -194,16 +131,7 @@ User.create!(
         popularity: 4,
         picture: open("#{Rails.root}/public/images/cafe8.jpg"),
         ingredients_attributes: [
-                                  { name: "レタス"},
-                                  { name: "しゃぶしゃぶ用豚肉"},
-                                  { name: "三つ葉"},
-                                  { name: "胡椒"},
-                                  { name: ""},
-                                  { name: ""},
-                                  { name: ""},
-                                  { name: ""},
-                                  { name: ""},
-                                  { name: ""}
+                                  { name: "渋谷"}
                                 ],
       },
       {
@@ -215,16 +143,7 @@ User.create!(
         popularity: 5,
         picture: open("#{Rails.root}/public/images/cafe9.jpg"),
         ingredients_attributes: [
-                                  { name: "卵"},
-                                  { name: "とろけるチーズ"},
-                                  { name: "オリーブオイル"},
-                                  { name: "胡椒"},
-                                  { name: ""},
-                                  { name: ""},
-                                  { name: ""},
-                                  { name: ""},
-                                  { name: ""},
-                                  { name: ""}
+                                  { name: "新宿"}
                                 ],
       },
       {
@@ -236,16 +155,7 @@ User.create!(
         popularity: 5,
         picture: open("#{Rails.root}/public/images/cafe10.jpg"),
         ingredients_attributes: [
-                                  { name: "卵"},
-                                  { name: "じゃがいも"},
-                                  { name: "玉ねぎ"},
-                                  { name: "胡椒"},
-                                  { name: ""},
-                                  { name: ""},
-                                  { name: ""},
-                                  { name: ""},
-                                  { name: ""},
-                                  { name: ""}
+                                  { name: "藤沢"}
                                 ],
       },
       {
@@ -257,16 +167,7 @@ User.create!(
         popularity: 3,
         picture: open("#{Rails.root}/public/images/cafe11.jpg"),
         ingredients_attributes: [
-                                  { name: "ブリ"},
-                                  { name: "しょうゆ"},
-                                  { name: "みりん"},
-                                  { name: "酒"},
-                                  { name: ""},
-                                  { name: ""},
-                                  { name: ""},
-                                  { name: ""},
-                                  { name: ""},
-                                  { name: ""}
+                                  { name: "伊勢原"}
                                 ],
       },
       {
@@ -278,17 +179,7 @@ User.create!(
         popularity: 4,
         picture: open("#{Rails.root}/public/images/cafe12.jpg"),
         ingredients_attributes: [
-                                  { name: "鶏肉"},
-                                  { name: "玉ねぎ"},
-                                  { name: "にんじん"},
-                                  { name: "じゃがいも"},
-                                  { name: "なす"},
-                                  { name: "カレールー"},
-                                  { name: ""},
-                                  { name: ""},
-                                  { name: ""},
-                                  { name: ""}
-                                ],
+                                  { name: "茅ヶ崎"}                                ],
       },
       {
         name: "サンマルクカフェ",
@@ -299,16 +190,7 @@ User.create!(
         popularity: 5,
         picture: open("#{Rails.root}/public/images/cafe13.jpg"),
         ingredients_attributes: [
-                                  { name: "牛ひき肉"},
-                                  { name: "絹豆腐"},
-                                  { name: "麻婆豆腐の素"},
-                                  { name: ""},
-                                  { name: ""},
-                                  { name: ""},
-                                  { name: ""},
-                                  { name: ""},
-                                  { name: ""},
-                                  { name: ""}
+                                  { name: "辻堂"}
                                 ],
       },
       {
@@ -320,16 +202,7 @@ User.create!(
         popularity: 4,
         picture: open("#{Rails.root}/public/images/cafe14.jpg"),
         ingredients_attributes: [
-                                  { name: "大葉"},
-                                  { name: "薄切り肉"},
-                                  { name: "豆腐"},
-                                  { name: "きのこ"},
-                                  { name: "しらたき"},
-                                  { name: ""},
-                                  { name: ""},
-                                  { name: ""},
-                                  { name: ""},
-                                  { name: ""}
+                                  { name: "大船"}
                                 ],
       },
       {
@@ -341,16 +214,7 @@ User.create!(
         popularity: 5,
         picture: open("#{Rails.root}/public/images/cafe15.jpg"),
         ingredients_attributes: [
-                                  { name: "豚肉"},
-                                  { name: "ごぼう"},
-                                  { name: "にんじん"},
-                                  { name: "大根"},
-                                  { name: "こんにゃく"},
-                                  { name: "長ネギ"},
-                                  { name: "ごま油"},
-                                  { name: "味噌"},
-                                  { name: "酒"},
-                                  { name: "七味唐辛子"}
+                                  { name: "川崎"}
                                 ],
       }
     ]

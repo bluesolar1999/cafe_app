@@ -37,7 +37,7 @@ ja:
         content: コメント
       ingredient:
         cafe_id: 紐づいたカフェのID
-        name: 駅（10種類まで登録可）
+        name: 最寄り駅
   date:
     abbr_day_names:
     - 日
