@@ -1,8 +1,8 @@
 require "rails_helper"
 
-RSpec.describe "料理一覧ページ", type: :request do
+RSpec.describe "投稿一覧ページ", type: :request do
   let!(:user) { create(:user) }
-  let!(:cafe) { create(:cafe, user: user) }
+  let!(:cafe) { create(:cafe, :ingredients, user: user) }
 
   context "ログインしているユーザーの場合" do
     it "レスポンスが正常に表示されること" do

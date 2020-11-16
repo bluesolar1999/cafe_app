@@ -39,7 +39,7 @@ RSpec.describe "Cafes", type: :system do
     context "カフェ登録処理" do
       it "有効な情報でカフェ登録を行うとカフェ登録成功のフラッシュが表示されること" do
         fill_in "カフェ名", with: "スターバックス"
-        fill_in "説明", with: "冬に食べたくなる、身体が温まる料理です"
+        fill_in "説明", with: "冬に飲みたくなる、身体が温まる飲み物です"
         fill_in "注文したもの", with: "coffee"
         fill_in "参照URL", with: "https://cookpad.com/recipe/2798655"
         fill_in "人気度", with: 5
@@ -57,7 +57,7 @@ RSpec.describe "Cafes", type: :system do
 
       it "無効な情報でカフェ登録を行うとカフェ登録失敗のフラッシュが表示されること" do
         fill_in "カフェ名", with: ""
-        fill_in "説明", with: "冬に食べたくなる、身体が温まる料理です"
+        fill_in "説明", with: "冬に飲みたくなる、身体が温まる飲み物です"
         fill_in "注文したもの", with: "coffee"
         fill_in "参照URL", with: "https://cookpad.com/recipe/2798655"
         fill_in "人気度", with: 5
@@ -91,7 +91,7 @@ RSpec.describe "Cafes", type: :system do
     context "カフェの更新処理" do
       it "有効な更新" do
         fill_in "カフェ名", with: "編集：スターバックス"
-        fill_in "説明", with: "編集：冬に食べたくなる、身体が温まる料理です"
+        fill_in "説明", with: "編集：冬に飲みたくなる、身体が温まる飲み物です"
         fill_in "注文したもの", with: "coffee"
         fill_in "参照URL", with: "henshu-https://cookpad.com/recipe/2798655"
         fill_in "人気度", with: 1
@@ -100,7 +100,7 @@ RSpec.describe "Cafes", type: :system do
         click_button "更新する"
         expect(page).to have_content "カフェ情報が更新されました！"
         expect(cafe.reload.name).to eq "編集：スターバックス"
-        expect(cafe.reload.description).to eq "冬に食べたくなる、身体が温まる料理です"
+        expect(cafe.reload.description).to eq "冬に飲みたくなる、身体が温まる飲み物です"
         expect(cafe.reload.order).to eq "coffee"
         expect(cafe.reload.reference).to eq "henshu-https://cookpad.com/recipe/2798655"
         expect(cafe.reload.popularity).to eq 1
@@ -267,7 +267,7 @@ RSpec.describe "Cafes", type: :system do
         end
       end
 
-      it "検索ワードを入れずに検索ボタンを押した場合、料理一覧が表示されること" do
+      it "検索ワードを入れずに検索ボタンを押した場合、投稿一覧が表示されること" do
         fill_in 'q_name_or_ingredients_name_cont', with: ''
         click_button '検索'
         expect(page).to have_css 'h3', text: "カフェ一覧"

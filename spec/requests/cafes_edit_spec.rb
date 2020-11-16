@@ -12,8 +12,8 @@ RSpec.describe "投稿編集", type: :request do
       get edit_cafe_path(cafe)
       login_for_request(user)
       expect(response).to redirect_to edit_cafe_url(cafe)
-      patch cafe_path(cafe), params: { cafe: { name: "イカの塩焼き",
-                                               description: "冬に食べたくなる、身体が温まる料理です",
+      patch cafe_path(cafe), params: { cafe: { name: "スターバックスコーヒー",
+                                               description: "冬に飲みたくなる、身体が温まる飲み物です",
                                                order: "coffee",
                                                reference: "https://cookpad.com/recipe/2798655",
                                                popularity: 5,
@@ -33,8 +33,8 @@ RSpec.describe "投稿編集", type: :request do
       expect(response).to have_http_status "302"
       expect(response).to redirect_to login_path
       # 更新
-      patch cafe_path(cafe), params: { cafe: { name: "イカの塩焼き",
-                                               description: "冬に食べたくなる、身体が温まる料理です",
+      patch cafe_path(cafe), params: { cafe: { name: "スターバックスコーヒー",
+                                               description: "冬に飲みたくなる、身体が温まる飲み物です",
                                                order: "coffee",
                                                reference: "https://cookpad.com/recipe/2798655",
                                                popularity: 5 } }
@@ -51,8 +51,8 @@ RSpec.describe "投稿編集", type: :request do
       expect(response).to have_http_status "302"
       expect(response).to redirect_to root_path
       # 更新
-      patch cafe_path(cafe), params: { cafe: { name: "イカの塩焼き",
-                                               description: "冬に食べたくなる、身体が温まる料理です",
+      patch cafe_path(cafe), params: { cafe: { name: "スターバックスコーヒー",
+                                               description: "冬に飲みたくなる、身体が温まる飲み物です",
                                                order: "coffee",
                                                reference: "https://cookpad.com/recipe/2798655",
                                                popularity: 5 } }

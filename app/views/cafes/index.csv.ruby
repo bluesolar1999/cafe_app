@@ -10,7 +10,7 @@ CSV.generate do |csv|
                          駅7の名前 駅8の名前\
                          駅9の名前 駅10の名前)
   csv << csv_column_labels
-  # 各料理のカラム値を追加
+  # 各投稿のカラム値を追加
   current_user.feed.each do |cafe|
     # まず駅以外のカラムを追加
     csv_column_values = [

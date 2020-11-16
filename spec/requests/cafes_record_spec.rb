@@ -22,7 +22,7 @@ RSpec.describe "カフェ登録", type: :request do
     it "有効なカフェデータで登録できること" do
       expect {
         post cafes_path, params: { cafe: { name: "イカの塩焼き",
-                                           description: "冬に食べたくなる、身体が温まる料理です",
+                                           description: "冬に飲みたくなる、身体が温まる飲み物です",
                                            order: "coffee",
                                            reference: "https://cookpad.com/recipe/2798655",
                                            popularity: 5,
@@ -46,7 +46,7 @@ RSpec.describe "カフェ登録", type: :request do
     it "無効なカフェデータでは登録できないこと" do
       expect {
         post cafes_path, params: { cafe: { name: "",
-                                           description: "冬に食べたくなる、身体が温まる料理です",
+                                           description: "冬に飲みたくなる、身体が温まる飲み物です",
                                            order: "coffee",
                                            reference: "https://cookpad.com/recipe/2798655",
                                            popularity: 5,
@@ -57,14 +57,14 @@ RSpec.describe "カフェ登録", type: :request do
       expect(response).to render_template('cafes/new')
     end
 
-    context "材料無しの料理登録" do
+    context "最寄り駅無しのカフェ登録" do
       it "正常に完了すること" do
         expect {
           post cafes_path, params: { cafe: { name: "イカの塩焼き" } }
         }.to change(Cafe, :count).by(1)
       end
 
-      it "材料のデータは増えないこと" do
+      it "駅のデータは増えないこと" do
       expect {
         post cafes_path, params: { cafe: { name: "イカの塩焼き" } }
       }.not_to change(Ingredient, :count)

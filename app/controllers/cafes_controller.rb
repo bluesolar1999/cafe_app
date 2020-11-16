@@ -68,7 +68,7 @@ class CafesController < ApplicationController
     end
 
     def correct_user
-      # 現在のユーザーが更新対象の料理を保有しているかどうか確認
+      # 現在のユーザーが更新対象の投稿を保有しているかどうか確認
       @cafe = current_user.cafes.find_by(id: params[:id])
       redirect_to root_url if @cafe.nil?
     end
