@@ -15,7 +15,7 @@ CSV.generate do |csv|
       cafe.user.name,
       cafe.reference,
       cafe.popularity,
-      cafe.ingredients,
+      cafe.ingredients.each_with_index,
       cafe.created_at.strftime("%Y/%m/%d(%a)")
     ]
     # 最終的なcsv_column_valuesをcsvのセルに追加
