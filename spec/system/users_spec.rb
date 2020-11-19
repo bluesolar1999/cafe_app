@@ -133,6 +133,9 @@ RSpec.describe "Users", type: :system do
           expect(page).to have_content cafe.user.name
           expect(page).to have_content cafe.order
           expect(page).to have_content "★" * cafe.popularity + "☆" * (5 - cafe.popularity)
+          cafe.ingredients.each do |i|
+            expect(page).to have_content i.name
+          end
         end
       end
 

@@ -10,6 +10,7 @@ ja:
       user: ユーザー
       cafe: カフェ
       comment: コメント
+      ingredient: 駅
     attributes:
       user:
         id: ID
@@ -34,6 +35,9 @@ ja:
         user_id: コメント投稿者のID
         cafe_id: コメントされたカフェのID
         content: コメント
+      ingredient:
+        cafe_id: 紐づいたカフェのID
+        name: 駅（10種類まで登録可）
   date:
     abbr_day_names:
     - 日

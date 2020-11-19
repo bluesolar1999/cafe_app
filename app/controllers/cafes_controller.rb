@@ -4,6 +4,10 @@ class CafesController < ApplicationController
 
   def new
     @cafe = Cafe.new
+    @cafe.ingredients.build
+  end
+
+  def index
   end
 
   def show
@@ -47,16 +51,12 @@ class CafesController < ApplicationController
     end
   end
 
-  def cafe_params
-    params.require(:cafe).permit(:name, :description, :order,
-                                 :reference, :popularity, :picture)
-  end
-
   private
 
     def cafe_params
       params.require(:cafe).permit(:name, :discription, :order,
-                                   :reference, :popularity)
+                                   :reference, :popularity, :picture,
+                                   ingredients_attributes: [:id, :name])
     end
 
     def correct_user

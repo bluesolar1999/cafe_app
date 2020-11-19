@@ -3,7 +3,7 @@ require 'rails_helper'
 RSpec.describe "Cafes", type: :system do
   let!(:user) { create(:user) }
   let!(:other_user) { create(:user) }
-  let!(:cafe) { create(:cafe, :picture, user: user) }
+  let!(:cafe) { create(:cafe, :picture, :ingredients, user: user) }
   let!(:comment) { create(:comment, user_id: user.id, cafe: cafe) }
 
   describe "カフェ登録ページ" do
@@ -27,6 +27,12 @@ RSpec.describe "Cafes", type: :system do
         expect(page).to have_content '注文したもの'
         expect(page).to have_content '参照URL'
         expect(page).to have_content '人気度 [1~5]'
+        expect(page).to have_css 'label[for=cafe_ingredients_attributes_0_name]',
+                               text: '駅（10種類まで登録可）', count: 1
+      end
+
+      it "材料入力部分が10行表示されること" do
+        expect(page).to have_css 'input.ingredient_name', count: 10
       end
     end
 
@@ -37,6 +43,7 @@ RSpec.describe "Cafes", type: :system do
         fill_in "注文したもの", with: "coffee"
         fill_in "参照URL", with: "https://cookpad.com/recipe/2798655"
         fill_in "人気度", with: 5
+        fill_in "cafe[ingredients_attributes][0][name]", with: "横浜"
         attach_file "cafe[picture]", "#{Rails.root}/spec/fixtures/test_cafe.jpg"
         click_button "登録する"
         expect(page).to have_content "カフェが登録されました！"
@@ -88,6 +95,7 @@ RSpec.describe "Cafes", type: :system do
         fill_in "注文したもの", with: "coffee"
         fill_in "参照URL", with: "henshu-https://cookpad.com/recipe/2798655"
         fill_in "人気度", with: 1
+        fill_in "cafe[ingredients_attributes][0][name]", with: "編集-横浜"
         attach_file "cafe[picture]", "#{Rails.root}/spec/fixtures/test_cafe2.jpg"
         click_button "更新する"
         expect(page).to have_content "カフェ情報が更新されました！"
@@ -97,6 +105,7 @@ RSpec.describe "Cafes", type: :system do
         expect(cafe.reload.reference).to eq "henshu-https://cookpad.com/recipe/2798655"
         expect(cafe.reload.popularity).to eq 1
         expect(cafe.reload.picture.url).to include "fixture/test_cafe2.jpg"
+        expect(cafe.reload.ingredients.first.name).to eq "編集-横浜"
       end
 
       it "無効な更新" do
@@ -134,6 +143,9 @@ RSpec.describe "Cafes", type: :system do
         expect(page).to have_content cafe.reference
         expect(page).to have_content cafe.popularity
         expect(page).to have_link nil, href: cafe_path(cafe), class: 'cafe-picture'
+        cafe.ingredients.each do |i|
+          expect(page).to have_content i.name
+        end
       end
     end
 
@@ -173,6 +185,102 @@ RSpec.describe "Cafes", type: :system do
           expect(page).to have_selector 'span', text: comment.content
           expect(page).not_to have_link '削除', href: cafe_path(cafe)
         end
+      end
+    end
+  end
+
+  context "検索機能" do
+    context "ログインしている場合" do
+      before do
+        login_for_system(user)
+        visit root_path
+      end
+
+      it "ログイン後の各ページに検索窓が表示されていること" do
+        expect(page).to have_css 'form#cafe_search'
+        visit about_path
+        expect(page).to have_css 'form#cafe_search'
+        visit use_of_terms_path
+        expect(page).to have_css 'form#cafe_search'
+        visit users_path
+        expect(page).to have_css 'form#cafe_search'
+        visit user_path(user)
+        expect(page).to have_css 'form#cafe_search'
+        visit edit_user_path(user)
+        expect(page).to have_css 'form#cafe_search'
+        visit following_user_path(user)
+        expect(page).to have_css 'form#cafe_search'
+        visit followers_user_path(user)
+        expect(page).to have_css 'form#cafe_search'
+        visit cafes_path
+        expect(page).to have_css 'form#cafe_search'
+        visit cafe_path(cafe)
+        expect(page).to have_css 'form#cafe_search'
+        visit new_cafe_path
+        expect(page).to have_css 'form#cafe_search'
+        visit edit_cafe_path(cafe)
+        expect(page).to have_css 'form#cafe_search'
+      end
+
+      it "フィードの中から検索ワードに該当する結果が表示されること" do
+        create(:cafe, name: 'かに玉', user: user)
+        create(:cafe, name: 'かに鍋', user: other_user)
+        create(:cafe, name: '野菜炒め', user: user)
+        create(:cafe, name: '野菜カレー', user: other_user)
+
+        # 誰もフォローしない場合
+        fill_in 'q_name_or_ingredients_name_cont', with: 'かに'
+        click_button '検索'
+        expect(page).to have_css 'h3', text: "”かに”の検索結果：1件"
+        within find('.cafes') do
+          expect(page).to have_css 'li', count: 1
+        end
+        fill_in 'q_name_or_ingredients_name_cont', with: '野菜'
+        click_button '検索'
+        expect(page).to have_css 'h3', text: "”野菜”の検索結果：1件"
+        within find('.cafes') do
+          expect(page).to have_css 'li', count: 1
+        end
+
+        # other_userをフォローする場合
+        user.follow(other_user)
+        fill_in 'q_name_or_ingredients_name_cont', with: 'かに'
+        click_button '検索'
+        expect(page).to have_css 'h3', text: "”かに”の検索結果：2件"
+        within find('.cafes') do
+          expect(page).to have_css 'li', count: 2
+        end
+        fill_in 'q_name_or_ingredients_name_cont', with: '野菜'
+        click_button '検索'
+        expect(page).to have_css 'h3', text: "”野菜”の検索結果：2件"
+        within find('.cafes') do
+          expect(page).to have_css 'li', count: 2
+        end
+
+        # 材料も含めて検索に引っかかること
+        create(:ingredient, name: 'かにの切り身', cafe: Cafe.first)
+        fill_in 'q_name_or_ingredients_name_cont', with: 'かに'
+        click_button '検索'
+        expect(page).to have_css 'h3', text: "”かに”の検索結果：3件"
+        within find('.cafes') do
+          expect(page).to have_css 'li', count: 3
+        end
+      end
+
+      it "検索ワードを入れずに検索ボタンを押した場合、料理一覧が表示されること" do
+        fill_in 'q_name_or_ingredients_name_cont', with: ''
+        click_button '検索'
+        expect(page).to have_css 'h3', text: "カフェ一覧"
+        within find('.cafes') do
+          expect(page).to have_css 'li', count: Cafe.count
+        end
+      end
+    end
+
+    context "ログインしていない場合" do
+      it "検索窓が表示されないこと" do
+        visit root_path
+        expect(page).not_to have_css 'form#cafe_search'
       end
     end
   end
