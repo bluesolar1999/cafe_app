@@ -132,7 +132,7 @@ RSpec.describe "Users", type: :system do
           expect(page).to have_content cafe.description
           expect(page).to have_content cafe.user.name
           expect(page).to have_content cafe.order
-          expect(page).to have_content cafe.popularity
+          expect(page).to have_content "★" * cafe.popularity + "☆" * (5 - cafe.popularity)
         end
       end
 
@@ -158,7 +158,7 @@ RSpec.describe "Users", type: :system do
         login_for_system(user)
       end
 
-      it "料理のお気に入り登録/解除ができること" do
+      it "投稿のお気に入り登録/解除ができること" do
         expect(user.favorite?(cafe)).to be_falsey
         user.favorite(cafe)
         expect(user.favorite?(cafe)).to be_truthy
@@ -190,7 +190,7 @@ RSpec.describe "Users", type: :system do
         expect(link[:href]).to include "/favorites/#{cafe.id}/create"
       end
 
-      it "料理個別ページからお気に入り登録/解除ができること", js: true do
+      it "投稿個別ページからお気に入り登録/解除ができること", js: true do
         visit cafe_path(cafe)
         link = find('.like')
         expect(link[:href]).to include "/favorites/#{cafe.id}/create"
@@ -229,7 +229,7 @@ RSpec.describe "Users", type: :system do
         login_for_system(user)
       end
 
-      context "自分以外のユーザーの料理に対して" do
+      context "自分以外のユーザーの投稿に対して" do
         before do
           visit cafe_path(other_cafe)
         end
@@ -243,7 +243,7 @@ RSpec.describe "Users", type: :system do
           expect(page).to have_css 'li.new_notification'
           visit notifications_path
           expect(page).to have_css 'li.no_notification'
-          expect(page).to have_content "あなたの料理が#{user.name}さんにお気に入り登録されました。"
+          expect(page).to have_content "あなたの投稿が#{user.name}さんにお気に入り登録されました。"
           expect(page).to have_content other_cafe.name
           expect(page).to have_content other_cafe.description
           expect(page).to have_content other_cafe.created_at.strftime("%Y/%m/%d(%a) %H:%M")
@@ -258,7 +258,7 @@ RSpec.describe "Users", type: :system do
           expect(page).to have_css 'li.new_notification'
           visit notifications_path
           expect(page).to have_css 'li.no_notification'
-          expect(page).to have_content "あなたの料理に#{user.name}さんがコメントしました。"
+          expect(page).to have_content "あなたの投稿に#{user.name}さんがコメントしました。"
           expect(page).to have_content '「コメントしました」'
           expect(page).to have_content other_cafe.name
           expect(page).to have_content other_cafe.description
@@ -266,7 +266,7 @@ RSpec.describe "Users", type: :system do
         end
       end
 
-      context "自分の料理に対して" do
+      context "自分の投稿に対して" do
         before do
           visit cafe_path(cafe)
         end
@@ -302,7 +302,7 @@ RSpec.describe "Users", type: :system do
       login_for_system(user)
     end
 
-    it "料理のお気に入り登録/解除ができること" do
+    it "投稿のお気に入り登録/解除ができること" do
       expect(user.list?(cafe)).to be_falsey
       user.list(cafe)
       expect(user.list?(cafe)).to be_truthy
@@ -334,7 +334,7 @@ RSpec.describe "Users", type: :system do
       expect(link[:href]).to include "/lists/#{cafe.id}/create"
     end
 
-    it "料理個別ページからリスト登録/解除ができること", js: true do
+    it "投稿個別ページからリスト登録/解除ができること", js: true do
       link = find('.list')
       expect(link[:href]).to include "/lists/#{cafe.id}/create"
       link.click
@@ -356,7 +356,7 @@ RSpec.describe "Users", type: :system do
       expect(page).to have_content cafe.name
       expect(page).to have_content cafe.description
       expect(page).to have_content List.last.created_at.strftime("%Y/%m/%d(%a) %H:%M")
-      expect(page).to have_content "この料理を行く予定リストに追加しました。"
+      expect(page).to have_content "このカフェを行く予定リストに追加しました。"
       expect(page).to have_content cafe_2.name
       expect(page).to have_content cafe_2.description
       expect(page).to have_content List.first.created_at.strftime("%Y/%m/%d(%a) %H:%M")
