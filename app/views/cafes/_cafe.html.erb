@@ -1,6 +1,9 @@
 <li id="cafe-<%= cafe.id %>">
   <%= link_to gravatar_for(cafe.user, size: 50), cafe.user %>
   <span class="name"><%= link_to cafe.name, cafe_path(cafe) %></span>
+  <span>
+    <%= link_to((image_tag cafe.picture.thumb200.url), cafe_path(cafe.id), class: 'cafe-picture') if cafe.picture.url.present? %>
+  </span>
   <span class="order"><%= cafe.order %></span><br>
   <span class="description"><%= cafe.description %></span><br>
   <span class="popularity">人気度：<%= cafe.popularity %></span><br>

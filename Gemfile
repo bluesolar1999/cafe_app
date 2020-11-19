@@ -55,8 +55,12 @@ group :development, :test do
   gem "factory_bot_rails", "~> 4.10.0"
 end
 
+gem 'carrierwave',             '1.2.2'
+gem "mini_magick",             '>= 4.9.4'
+
 group :production do # 本番環境
   gem 'pg', '>= 0.18', '< 2.0'
+  gem 'fog', '1.42'
 end
 
 group :development do
