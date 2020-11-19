@@ -5,8 +5,11 @@ ruby '2.5.7'
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '5.2.3'
+
+gem 'bootstrap-sass' # Bootstrap用のgemを追加
+
 # Use postgresql as the database for Active Record
-gem 'pg', '>= 0.18', '< 2.0'
+# gem 'pg', '>= 0.18', '< 2.0'
 # Use Puma as the app server
 gem 'puma', '~> 3.11'
 # Use SCSS for stylesheets
@@ -41,10 +44,11 @@ group :development, :test do
   gem 'rails-controller-testing'
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]
+  gem 'rubocop-airbnb'
 end
 
 group :production do # 本番環境
-  gem 'pg', '>= 0.18', '< 2.0'# PostgreSQL
+  gem 'pg', '>= 0.18', '< 2.0'
 end
 
 group :development do
