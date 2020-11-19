@@ -35,7 +35,6 @@ class User < ApplicationRecord
     end
   end
 
-
   # 永続セッションのためにユーザーをデータベースに記憶する
   def remember
     self.remember_token = User.new_token

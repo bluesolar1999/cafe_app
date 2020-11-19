@@ -13,7 +13,6 @@ RSpec.describe "プロフィール編集", type: :request do
                                                email: "user@example.com",
                                                introduction: "初めまして",
                                                sex: "男性" } }
-      redirect_to user
       follow_redirect!
       expect(response).to render_template('users/show')
     end

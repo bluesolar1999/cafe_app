@@ -37,7 +37,7 @@ FactoryBot.define do
                                { name: "茅ヶ崎" },
                                { name: "原宿" },
                                { name: "下北沢" },
-                               { name: "伊勢原" }
+                               { name: "伊勢原" },
                              ]
     }
   end

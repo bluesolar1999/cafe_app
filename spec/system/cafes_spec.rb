@@ -28,7 +28,7 @@ RSpec.describe "Cafes", type: :system do
         expect(page).to have_content '参照URL'
         expect(page).to have_content '人気度 [1~5]'
         expect(page).to have_css 'label[for=cafe_ingredients_attributes_0_name]',
-                               text: '最寄り駅', count: 1
+                                 text: '最寄り駅', count: 1
       end
 
       it "材料入力部分が1行表示されること" do
@@ -38,7 +38,7 @@ RSpec.describe "Cafes", type: :system do
 
     context "カフェ登録処理" do
       it "有効な情報でカフェ登録を行うとカフェ登録成功のフラッシュが表示されること" do
-        fill_in "カフェ名", with: "スターバックス"
+        fill_in "カフェ名", with: "スターバックスコーヒー"
         fill_in "説明", with: "冬に飲みたくなる、身体が温まる飲み物です"
         fill_in "注文したもの", with: "coffee"
         fill_in "参照URL", with: "https://cookpad.com/recipe/2798655"
@@ -50,7 +50,7 @@ RSpec.describe "Cafes", type: :system do
       end
 
       it "画像無しで登録すると、デフォルト画像が割り当てられること" do
-        fill_in "カフェ名", with: "イカの塩焼き"
+        fill_in "カフェ名", with: "スターバックスコーヒー"
         click_button "登録する"
         expect(page).to have_link(href: cafe_path(Cafe.first))
       end
@@ -90,7 +90,7 @@ RSpec.describe "Cafes", type: :system do
 
     context "カフェの更新処理" do
       it "有効な更新" do
-        fill_in "カフェ名", with: "編集：スターバックス"
+        fill_in "カフェ名", with: "編集：スターバックスコーヒー"
         fill_in "説明", with: "編集：冬に飲みたくなる、身体が温まる飲み物です"
         fill_in "注文したもの", with: "coffee"
         fill_in "参照URL", with: "henshu-https://cookpad.com/recipe/2798655"
@@ -99,13 +99,13 @@ RSpec.describe "Cafes", type: :system do
         attach_file "cafe[picture]", "#{Rails.root}/spec/fixtures/test_cafe2.jpg"
         click_button "更新する"
         expect(page).to have_content "カフェ情報が更新されました！"
-        expect(cafe.reload.name).to eq "編集：スターバックス"
+        expect(cafe.reload.name).to eq "編集：スターバックスコーヒー"
         expect(cafe.reload.description).to eq "冬に飲みたくなる、身体が温まる飲み物です"
         expect(cafe.reload.order).to eq "coffee"
         expect(cafe.reload.reference).to eq "henshu-https://cookpad.com/recipe/2798655"
         expect(cafe.reload.popularity).to eq 1
-        expect(cafe.reload.picture.url).to include "fixture/test_cafe2.jpg"
         expect(cafe.reload.ingredients.first.name).to eq "編集-横浜"
+        expect(cafe.reload.picture.url).to include "test_cafe2.jpg"
       end
 
       it "無効な更新" do

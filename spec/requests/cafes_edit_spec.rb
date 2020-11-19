@@ -18,8 +18,7 @@ RSpec.describe "投稿編集", type: :request do
                                                reference: "https://cookpad.com/recipe/2798655",
                                                popularity: 5,
                                                picture: picture2,
-                                               ingredients_attributes: [
-                                                name: "編集-横浜"]  } }
+                                               ingredients_attributes: [name: "編集-横浜"] } }
       redirect_to cafe
       follow_redirect!
       expect(response).to render_template('cafes/show')

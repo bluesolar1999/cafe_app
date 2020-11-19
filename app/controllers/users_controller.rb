@@ -1,8 +1,8 @@
 class UsersController < ApplicationController
-  before_action :logged_in_user, only: [:index, :show, :edit, :update, :destroy]
-  before_action :correct_user,   only: [:edit, :update]
-  before_action :logged_in_user, only: [:index, :show, :edit, :update, :destroy,
-                                        :following, :followers,]
+  before_action :logged_in_user, only: [
+    :index, :show, :edit, :update, :destroy, :following, :followers,
+  ]
+  before_action :correct_user, only: [:edit, :update]
 
   def new
     @user = User.new
@@ -85,6 +85,15 @@ class UsersController < ApplicationController
     # プロフィール編集時に許可する属性
     def user_params_update
       params.require(:user).permit(:name, :email, :introduction, :sex)
+    end
+
+    # ログイン済みユーザーかどうか確認
+    def logged_in_user
+      unless logged_in?
+        store_location
+        flash[:danger] = "ログインしてください"
+        redirect_to login_url
+      end
     end
 
     # 正しいユーザーかどうか確認

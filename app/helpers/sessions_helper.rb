@@ -3,6 +3,7 @@ module SessionsHelper
     session[:user_id] = user.id
   end
 
+  # ユーザーのセッションを永続的にする
   def remember(user)
     user.remember
     cookies.permanent.signed[:user_id] = user.id
@@ -14,6 +15,7 @@ module SessionsHelper
     user == current_user
   end
 
+  # 記憶トークンcookieに対応するユーザーを返す
   def current_user
     if (user_id = session[:user_id])
       @current_user ||= User.find_by(id: user_id)

@@ -21,14 +21,13 @@ RSpec.describe "カフェ登録", type: :request do
 
     it "有効なカフェデータで登録できること" do
       expect {
-        post cafes_path, params: { cafe: { name: "イカの塩焼き",
+        post cafes_path, params: { cafe: { name: "スターバックスコーヒー",
                                            description: "冬に飲みたくなる、身体が温まる飲み物です",
                                            order: "coffee",
                                            reference: "https://cookpad.com/recipe/2798655",
                                            popularity: 5,
                                            picture: picture,
-                                           ingredients_attributes: [
-                                            name: "横浜" ] } }
+                                           ingredients_attributes: [name: "横浜"] } }
       }.to change(Cafe, :count).by(1)
       redirect_to Cafe.first
       follow_redirect!
@@ -37,9 +36,8 @@ RSpec.describe "カフェ登録", type: :request do
 
     it "材料のデータも同時に増えること" do
       expect {
-        post cafes_path, params: { cafe: { name: "イカの塩焼き",
-                                            ingredients_attributes: [
-                                              name: "横浜"] } }
+        post cafes_path, params: { cafe: { name: "スターバックスコーヒー",
+                                           ingredients_attributes: [name: "横浜"] } }
       }.to change(Ingredient, :count).by(1)
     end
 
@@ -51,8 +49,7 @@ RSpec.describe "カフェ登録", type: :request do
                                            reference: "https://cookpad.com/recipe/2798655",
                                            popularity: 5,
                                            picture: picture,
-                                           ingredients_attributes: [
-                                            name: "横浜"] } }
+                                           ingredients_attributes: [name: "横浜"] } }
       }.not_to change(Cafe, :count)
       expect(response).to render_template('cafes/new')
     end
@@ -60,13 +57,13 @@ RSpec.describe "カフェ登録", type: :request do
     context "最寄り駅無しのカフェ登録" do
       it "正常に完了すること" do
         expect {
-          post cafes_path, params: { cafe: { name: "イカの塩焼き" } }
+          post cafes_path, params: { cafe: { name: "スターバックスコーヒー" } }
         }.to change(Cafe, :count).by(1)
       end
 
       it "駅のデータは増えないこと" do
       expect {
-        post cafes_path, params: { cafe: { name: "イカの塩焼き" } }
+        post cafes_path, params: { cafe: { name: "スターバックスコーヒー" } }
       }.not_to change(Ingredient, :count)
       end
     end
