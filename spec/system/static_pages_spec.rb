@@ -18,6 +18,7 @@ RSpec.describe "StaticPages", type: :system do
       context "カフェフィード", js: true do
         let!(:user) { create(:user) }
         let!(:cafe) { create(:cafe, user: user) }
+
         before do
           login_for_system(user)
         end
@@ -38,11 +39,11 @@ RSpec.describe "StaticPages", type: :system do
           expect(page).to have_link "新しいカフェを投稿", href: new_cafe_path
         end
 
-        it "料理を削除後、削除成功のフラッシュが表示されること" do
+        it "投稿を削除後、削除成功のフラッシュが表示されること" do
           visit root_path
           click_on '削除'
           page.driver.browser.switch_to.alert.accept
-          expect(page).to have_content '料理が削除されました'
+          expect(page).to have_content '投稿が削除されました'
         end
       end
     end
