@@ -13,3 +13,12 @@ User.create!(name:  name,
     password:              password,
     password_confirmation: password)
 end
+
+10.times do |n|
+    Cafe.create!(name: Faker::Food.dish,
+                 order: "coffee",
+                 description: "冬に食べたくなる、身体が温まるカフェです",
+                 reference: "https://cookpad.com/recipe/2798655",
+                 popularity: 5,
+                 user_id: 1)
+end

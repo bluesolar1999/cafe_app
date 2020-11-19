@@ -1,0 +1,34 @@
+<% provide(:title, "カフェ情報の編集") %>
+<div class="container">
+  <div class="row">
+    <div class="col-md-6 col-md-offset-3">
+      <%= form_for(@cafe) do |f| %>
+        <%= render 'shared/error_messages', object: f.object %>
+        <div class = 'form-group'>
+          <%= f.label :name %>　<span class="input-need">※必須</span>
+          <%= f.text_field :name, class: 'form-control', id: 'cafe_name' %>
+        </div>
+        <div class = 'form-group'>
+          <%= f.label :description %>　<span class="input-unneed">※任意</span>
+          <%= f.text_field :description, size: "60x4", class: 'form-control', id: 'cafe_description' %>
+        </div>
+        <div class = 'form-group'>
+          <%= f.label :order %> [人分]　<span class="input-unneed">※任意</span>
+          <%= f.text_field :order, class: 'form-control', id: 'cafe_order' %>
+        </div>
+        <div class = 'form-group'>
+          <%= f.label :reference %>　<span class="input-unneed">※任意</span>
+          <%= f.text_field :reference, class: 'form-control', id: 'cafe_reference' %>
+        </div>
+        <div class = 'form-group'>
+          <%= f.label :popularity %> [1~5]　<span class="input-unneed">※任意</span>
+          <%= f.text_field :popularity, class: 'form-control', id: 'cafe_popularity' %>
+        </div>
+        <%= f.submit "更新する", class: "btn btn-primary" %>
+        <p></p>
+        <%= link_to "料理を削除する", cafe_path(@cafe), method: :delete,
+                                  data: { confirm: "本当にこの料理を削除してよろしいですか？" } %>
+      <% end %>
+    </div>
+  </div>
+</div>

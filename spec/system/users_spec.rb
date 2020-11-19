@@ -101,6 +101,7 @@ RSpec.describe "Users", type: :system do
     context "ページレイアウト" do
       before do
         login_for_system(user)
+        create_list(:cafe, 10, user: user)
         visit user_path(user)
       end
 
@@ -116,6 +117,24 @@ RSpec.describe "Users", type: :system do
         expect(page).to have_content user.name
         expect(page).to have_content user.introduction
         expect(page).to have_content user.sex
+      end
+
+      it "カフェの件数が表示されていることを確認" do
+        expect(page).to have_content "カフェ (#{user.cafes.count})"
+      end
+
+      it "カフェの情報が表示されていることを確認" do
+        Cafe.take(5).each do |cafe|
+          expect(page).to have_link cafe.name
+          expect(page).to have_content cafe.description
+          expect(page).to have_content cafe.user.name
+          expect(page).to have_content cafe.order
+          expect(page).to have_content cafe.popularity
+        end
+      end
+
+      it "カフェのページネーションが表示されていることを確認" do
+        expect(page).to have_css "div.pagination"
       end
     end
   end
