@@ -1,15 +1,8 @@
 # アプリケーションの概要
-<<<<<<< HEAD
 行ったカフェを記録して共有できる、カフェ投稿SNSサービス。<https://cafe-application.herokuapp.com/>
 
 # 技術的ポイント
 ・**RSpec**でModel, Request, Systemテスト記述（計194examples）
-=======
-行ったカフェを記録して共有できる、カフェ投稿SNSサービス。<https://cafe-application.herokuapp.com/>
-
-# 技術的ポイント
-・**RSpec**でModel, Request, Systemテスト記述（計194xamples）
->>>>>>> origin/master
 ・**Ajax**を用いた非同期処理（フォロー/未フォロー、お気に入り登録/未登録などの切り替え表示）
 ・**Bootstrap**によるレスポンシブ対応
 ・**Rubocop**を使用したコード規約に沿った開発
